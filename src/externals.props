@@ -1,0 +1,13 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <SDL2Version>2.0.5</SDL2Version>
+        <SDL2TTFVersion>2.0.14</SDL2TTFVersion>
+
+        <ExternalsDir>$(SolutionDir)..\externals\</ExternalsDir>
+
+        <SDL2IncludePath>$(ExternalsDir)SDL2-$(SDL2Version)\include\</SDL2IncludePath>
+        <SDL2LibraryPath>$(ExternalsDir)SDL2-$(SDL2Version)\lib\x86\</SDL2LibraryPath>
+        <SDL2TTFIncludePath>$(ExternalsDir)SDL2_ttf-$(SDL2TTFVersion)\include\</SDL2TTFIncludePath>
+        <SDL2TTFLibraryPath>$(ExternalsDir)SDL2_ttf-$(SDL2TTFVersion)\lib\x86\</SDL2TTFLibraryPath>
+    </PropertyGroup>
+</Project>

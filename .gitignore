@@ -1,0 +1,8 @@
+build/
+externals/
+
+.vs/
+*.db
+*.opendb
+*.suo
+*.user
