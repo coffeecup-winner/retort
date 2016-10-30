@@ -11,7 +11,7 @@ namespace Retort::Graphics {
         return _renderer.get() != nullptr;
     }
 
-    void Renderer::clear(SDL_Color color) {
+    void Renderer::clear(Color color) {
         SDL_SetRenderDrawColor(_renderer.get(), color.r, color.g, color.b, color.a);
         SDL_RenderClear(_renderer.get());
     }
@@ -20,7 +20,12 @@ namespace Retort::Graphics {
         SDL_RenderPresent(_renderer.get());
     }
 
-    void Renderer::renderText(std::shared_ptr<TTF_Font> font, SDL_Color color, std::string str, int x, int y) {
+    void Renderer::fillRect(Color color, Rect rect) {
+        SDL_SetRenderDrawColor(_renderer.get(), color.r, color.g, color.b, color.a);
+        SDL_RenderFillRect(_renderer.get(), &rect);
+    }
+
+    void Renderer::renderText(std::shared_ptr<Font> font, Color color, std::string str, int x, int y) {
         auto surface = TTF_RenderText_Blended(font.get(), str.c_str(), color);
         auto texture = SDL_CreateTextureFromSurface(_renderer.get(), surface);
         SDL_Rect rect = { x, y, surface->w, surface->h };

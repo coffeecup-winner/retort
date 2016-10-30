@@ -23,6 +23,15 @@
     <ClCompile Include="Input\SDLEventProducer.cpp">
       <Filter>Input</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Panel.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\Control.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Graphics">
@@ -36,6 +45,9 @@
     </Filter>
     <Filter Include="Input">
       <UniqueIdentifier>{bf463049-b41e-4ef2-b6f4-9e71859e3b48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{9b13ccba-df20-4970-a733-5f1664f8182b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -68,6 +80,18 @@
     </ClInclude>
     <ClInclude Include="Utilities\Consumer.h">
       <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Game.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\UIEvent.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\Panel.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Geometry.h">
+      <Filter>Graphics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

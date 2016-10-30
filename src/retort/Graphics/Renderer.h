@@ -5,7 +5,10 @@
 #include <SDL.h>
 #include <SDL_ttf.h>
 
-#include "Window.h"
+#include <Graphics/Colors.h>
+#include <Graphics/Fonts.h>
+#include <Graphics/Geometry.h>
+#include <Graphics/Window.h>
 
 namespace Retort::Graphics {
     class Renderer {
@@ -18,8 +21,9 @@ namespace Retort::Graphics {
         explicit Renderer(Window &window);
         bool isValid();
 
-        void clear(SDL_Color color);
+        void clear(Color color);
         void present();
-        void renderText(std::shared_ptr<TTF_Font> font, SDL_Color color, std::string str, int x, int y);
+        void fillRect(Color color, Rect rect);
+        void renderText(std::shared_ptr<Font> font, Color color, std::string str, int x, int y);
     };
 }

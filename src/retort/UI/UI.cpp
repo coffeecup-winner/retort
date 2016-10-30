@@ -5,7 +5,11 @@ namespace Retort::UI {
         : Consumer()
         , _fonts(std::make_shared<Fonts>())
         , _renderer(renderer)
-    { }
+        , _root(std::make_shared<Panel>())
+    {
+        // TODO: merge with Window to remove the hard-coded values
+        _root->resize(640, 480);
+    }
 
     Feedback UI::consume(SDL_Event event) {
         if (event.type == SDL_QUIT) {
@@ -21,8 +25,7 @@ namespace Retort::UI {
     }
 
     Feedback UI::frameEnded() {
-        _renderer->clear(Colors::WHITE);
-        _renderer->renderText(_fonts->ubuntu14(), Colors::BLACK, "Hello, world!", 10, 10);
+        _root->render(_renderer, _fonts);
         _renderer->present();
         return Feedback::Continue;
     }

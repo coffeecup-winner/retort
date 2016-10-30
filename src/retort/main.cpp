@@ -4,6 +4,7 @@
 #include <SDL.h>
 #include <SDL_ttf.h>
 
+#include <Game/Game.h>
 #include <Graphics/Colors.h>
 #include <Graphics/Fonts.h>
 #include <Graphics/Renderer.h>
@@ -12,6 +13,7 @@
 #include <Input/SDLEventProducer.h>
 #include <UI/UI.h>
 
+using namespace Retort::Game;
 using namespace Retort::Graphics;
 using namespace Retort::Input;
 using namespace Retort::UI;
@@ -34,9 +36,12 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    auto ui = std::make_shared<UI>(renderer);
     auto sdlEvents = std::make_shared<SDLEventProducer>();
+    auto ui = std::make_shared<UI>(renderer);
+    auto game = std::make_shared<Game>();
+
     sdlEvents->setConsumer(ui);
+    ui->setConsumer(game);
     sdlEvents->run();
 
     return 0;

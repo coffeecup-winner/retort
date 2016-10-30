@@ -87,6 +87,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Game\Game.cpp" />
     <ClCompile Include="Graphics\Colors.cpp" />
     <ClCompile Include="Graphics\Fonts.cpp" />
     <ClCompile Include="Graphics\Renderer.cpp" />
@@ -94,17 +95,23 @@
     <ClCompile Include="Graphics\Window.cpp" />
     <ClCompile Include="Input\SDLEventProducer.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="UI\Control.cpp" />
+    <ClCompile Include="UI\Panel.cpp" />
     <ClCompile Include="UI\UI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game\Game.h" />
     <ClInclude Include="Graphics\Colors.h" />
     <ClInclude Include="Graphics\Fonts.h" />
+    <ClInclude Include="Graphics\Geometry.h" />
     <ClInclude Include="Graphics\Renderer.h" />
     <ClInclude Include="Graphics\SDLEnvironment.h" />
     <ClInclude Include="Graphics\Window.h" />
     <ClInclude Include="Input\SDLEventProducer.h" />
     <ClInclude Include="UI\Control.h" />
+    <ClInclude Include="UI\Panel.h" />
     <ClInclude Include="UI\UI.h" />
+    <ClInclude Include="UI\UIEvent.h" />
     <ClInclude Include="Utilities\Consumer.h" />
     <ClInclude Include="Utilities\Producer.h" />
   </ItemGroup>
