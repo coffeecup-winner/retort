@@ -5,7 +5,7 @@ namespace Retort::UI {
         : Consumer()
         , _fonts(std::make_shared<Fonts>())
         , _renderer(renderer)
-        , _root(std::make_shared<Panel>())
+        , _root(std::make_shared<PipelineControl>())
     {
         // TODO: merge with Window to remove the hard-coded values
         _root->resize(640, 480);

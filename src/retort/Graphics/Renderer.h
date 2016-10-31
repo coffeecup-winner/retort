@@ -23,6 +23,7 @@ namespace Retort::Graphics {
 
         void clear(Color color);
         void present();
+        void drawLine(Color color, int x1, int y1, int x2, int y2);
         void fillRect(Color color, Rect rect);
         void renderText(std::shared_ptr<Font> font, Color color, std::string str, int x, int y);
     };

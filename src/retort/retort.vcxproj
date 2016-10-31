@@ -97,6 +97,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="UI\Control.cpp" />
     <ClCompile Include="UI\Panel.cpp" />
+    <ClCompile Include="UI\PipelineControl.cpp" />
     <ClCompile Include="UI\UI.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +111,7 @@
     <ClInclude Include="Input\SDLEventProducer.h" />
     <ClInclude Include="UI\Control.h" />
     <ClInclude Include="UI\Panel.h" />
+    <ClInclude Include="UI\PipelineControl.h" />
     <ClInclude Include="UI\UI.h" />
     <ClInclude Include="UI\UIEvent.h" />
     <ClInclude Include="Utilities\Consumer.h" />

@@ -6,7 +6,7 @@
 #include <Graphics/Fonts.h>
 #include <Graphics/Renderer.h>
 #include <UI/UIEvent.h>
-#include <UI/Panel.h>
+#include <UI/PipelineControl.h>
 #include <Utilities/Consumer.h>
 #include <Utilities/Producer.h>
 
@@ -24,7 +24,7 @@ namespace Retort::UI {
         std::shared_ptr<Fonts> _fonts;
         std::shared_ptr<Renderer> _renderer;
 
-        std::shared_ptr<Panel> _root;
+        std::shared_ptr<PipelineControl> _root;
 
     public:
         explicit UI(std::shared_ptr<Renderer> renderer);

@@ -20,6 +20,11 @@ namespace Retort::Graphics {
         SDL_RenderPresent(_renderer.get());
     }
 
+    void Renderer::drawLine(Color color, int x1, int y1, int x2, int y2) {
+        SDL_SetRenderDrawColor(_renderer.get(), color.r, color.g, color.b, color.a);
+        SDL_RenderDrawLine(_renderer.get(), x1, y1, x2, y2);
+    }
+
     void Renderer::fillRect(Color color, Rect rect) {
         SDL_SetRenderDrawColor(_renderer.get(), color.r, color.g, color.b, color.a);
         SDL_RenderFillRect(_renderer.get(), &rect);
