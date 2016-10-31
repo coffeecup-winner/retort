@@ -8,9 +8,16 @@ namespace Retort::Graphics {
             return;
         }
 
-        if (TTF_Init() != 0) {
+        if (IMG_Init(IMG_INIT_PNG) != IMG_INIT_PNG) {
             SDL_Quit();
-            std::cout << "TTF_Init Error: " << TTF_GetError() << std::endl;
+            std::cout << "IMG_Init Error: " << SDL_GetError() << std::endl;
+            return;
+        }
+
+        if (TTF_Init() != 0) {
+            IMG_Quit();
+            SDL_Quit();
+            std::cout << "TTF_Init Error: " << SDL_GetError() << std::endl;
             return;
         }
         _isValid = true;
@@ -19,6 +26,7 @@ namespace Retort::Graphics {
     SDLEnvironment::~SDLEnvironment() {
         if (_isValid) {
             TTF_Quit();
+            IMG_Quit();
             SDL_Quit();
         }
     }
