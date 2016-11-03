@@ -16,6 +16,6 @@ namespace Retort::Graphics {
     public:
         SDLEnvironment();
         ~SDLEnvironment();
-        bool isValid();
+        bool isValid() const;
     };
 }

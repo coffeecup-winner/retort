@@ -15,8 +15,8 @@ namespace Retort::Graphics {
 
     public:
         Fonts();
-        bool isValid();
+        bool isValid() const;
 
-        const std::shared_ptr<Font> ubuntu14();
+        const std::shared_ptr<Font> ubuntu14() const;
     };
 }

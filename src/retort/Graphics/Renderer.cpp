@@ -7,7 +7,7 @@ namespace Retort::Graphics {
             SDL_DestroyRenderer))
     { }
 
-    bool Renderer::isValid() {
+    bool Renderer::isValid() const {
         return _renderer.get() != nullptr;
     }
 

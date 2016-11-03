@@ -31,7 +31,7 @@ namespace Retort::Graphics {
         }
     }
 
-    bool SDLEnvironment::isValid() {
+    bool SDLEnvironment::isValid() const {
         return _isValid;
     }
 }

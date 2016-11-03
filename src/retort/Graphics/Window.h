@@ -13,8 +13,8 @@ namespace Retort::Graphics {
         std::shared_ptr<SDL_Window> _window;
 
     public:
-        Window(std::string str, int w, int h);
-        bool isValid();
+        Window(const std::string &str, int w, int h);
+        bool isValid() const;
         SDL_Window *getSDLWindow();
     };
 }
