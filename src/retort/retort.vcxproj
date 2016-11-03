@@ -113,6 +113,7 @@
     <ClInclude Include="UI\Control.h" />
     <ClInclude Include="UI\Panel.h" />
     <ClInclude Include="UI\PipelineControl.h" />
+    <ClInclude Include="UI\PipelineControlEvent.h" />
     <ClInclude Include="UI\UI.h" />
     <ClInclude Include="UI\UIEvent.h" />
     <ClInclude Include="Utilities\Consumer.h" />

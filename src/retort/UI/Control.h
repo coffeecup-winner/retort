@@ -17,14 +17,18 @@ namespace Retort::UI {
 
         Rect _bounds;
         Color _backgroundColor;
+        int _mouseDownX;
+        int _mouseDownY;
 
     protected:
         Control();
         const Rect getBounds();
         const Color getBackgroundColor();
+        int getMouseDownX() const;
+        int getMouseDownY() const;
 
     public:
-        Feedback consume(SDL_Event event) override;
+        virtual Feedback consume(SDL_Event event) override;
         virtual void render(std::shared_ptr<Renderer> renderer, std::shared_ptr<Fonts> fonts) = 0;
         void move(int x, int y);
         void resize(int w, int h);

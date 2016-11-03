@@ -102,5 +102,8 @@
     <ClInclude Include="Utilities\Transformer.h">
       <Filter>Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="UI\PipelineControlEvent.h">
+      <Filter>UI</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -15,7 +15,19 @@ namespace Retort::UI {
         return _backgroundColor;
     }
 
+    int Control::getMouseDownX() const {
+        return _mouseDownX;
+    }
+
+    int Control::getMouseDownY() const {
+        return _mouseDownY;
+    }
+
     Feedback Control::consume(SDL_Event event) {
+        if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
+            _mouseDownX = event.button.x;
+            _mouseDownY = event.button.y;
+        }
         return Feedback::Continue;
     }
 

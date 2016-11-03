@@ -18,7 +18,7 @@ namespace Retort::Utilities {
 
     public:
         Producer();
-        void setConsumer(std::shared_ptr<Consumer<Event>> consumer);
+        virtual void setConsumer(std::shared_ptr<Consumer<Event>> consumer);
     };
 
     template <typename Event>

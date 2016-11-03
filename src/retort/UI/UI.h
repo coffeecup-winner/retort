@@ -24,6 +24,7 @@ namespace Retort::UI {
 
     public:
         explicit UI(std::shared_ptr<Renderer> renderer);
+        void setConsumer(std::shared_ptr<Consumer<UIEvent>> consumer) override;
         Feedback consume(SDL_Event) override;
         Feedback frameEnded() override;
     };
