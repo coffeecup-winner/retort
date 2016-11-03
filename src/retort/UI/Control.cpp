@@ -2,7 +2,8 @@
 
 namespace Retort::UI {
     Control::Control()
-        : _bounds({ 0, 0, 0, 0 })
+        : Transformer()
+        , _bounds({ 0, 0, 0, 0 })
         , _backgroundColor(Colors::WHITE)
     { }
 
@@ -12,6 +13,10 @@ namespace Retort::UI {
 
     const Color Control::getBackgroundColor() {
         return _backgroundColor;
+    }
+
+    Feedback Control::consume(SDL_Event event) {
+        return Feedback::Continue;
     }
 
     void Control::move(int x, int y) {
