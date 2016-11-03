@@ -21,7 +21,7 @@ namespace Retort::Utilities {
     public:
         Consumer();
 
-        virtual Feedback consume(Event e) = 0;
+        virtual Feedback consume(const Event &event) = 0;
         virtual Feedback frameEnded() = 0;
     };
 

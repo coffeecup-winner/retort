@@ -14,7 +14,7 @@ namespace Retort::Game {
 
     public:
         Game();
-        Feedback consume(UIEvent e) override;
+        Feedback consume(const UIEvent &event) override;
         Feedback frameEnded() override;
     };
 }

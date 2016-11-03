@@ -15,7 +15,7 @@ namespace Retort::UI {
         _root->setConsumer(consumer);
     }
 
-    Feedback UI::consume(SDL_Event event) {
+    Feedback UI::consume(const SDL_Event &event) {
         if (event.type == SDL_QUIT) {
             return Feedback::Stop;
         }

@@ -3,7 +3,7 @@
 namespace Retort::Game {
     Game::Game() { }
 
-    Feedback Game::consume(UIEvent e) {
+    Feedback Game::consume(const UIEvent &event) {
         return Feedback::Continue;
     }
 
