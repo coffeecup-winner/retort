@@ -23,6 +23,8 @@ namespace Retort::UI {
         return _mouseDownY;
     }
 
+    Control::~Control() { }
+
     Feedback Control::consume(const SDL_Event &event) {
         if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
             _mouseDownX = event.button.x;

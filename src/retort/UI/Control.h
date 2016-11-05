@@ -28,6 +28,7 @@ namespace Retort::UI {
         int getMouseDownY() const;
 
     public:
+        virtual ~Control();
         virtual Feedback consume(const SDL_Event &event) override;
         virtual void render(std::shared_ptr<Renderer> renderer, std::shared_ptr<Fonts> fonts) = 0;
         void move(int x, int y);

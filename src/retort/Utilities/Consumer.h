@@ -20,6 +20,7 @@ namespace Retort::Utilities {
 
     public:
         Consumer();
+        virtual ~Consumer();
 
         virtual Feedback consume(const Event &event) = 0;
         virtual Feedback frameEnded() = 0;
@@ -27,4 +28,7 @@ namespace Retort::Utilities {
 
     template <typename Event>
     Consumer<Event>::Consumer() { }
+
+    template <typename Event>
+    Consumer<Event>::~Consumer() { }
 }

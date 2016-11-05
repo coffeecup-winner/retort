@@ -10,8 +10,12 @@ namespace Retort::Utilities {
         , public Producer<OutEvent>
     {
     public:
+        virtual ~Transformer();
         virtual Feedback frameEnded() override;
     };
+
+    template <typename InEvent, typename OutEvent>
+    Transformer<InEvent, OutEvent>::~Transformer() { }
 
     template <typename InEvent, typename OutEvent>
     Feedback Transformer<InEvent, OutEvent>::frameEnded() {
