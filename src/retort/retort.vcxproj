@@ -60,6 +60,7 @@
         xcopy /Y "$(SDL2LibraryPath)*.dll" "$(OutDir)"
         xcopy /Y "$(SDL2ImageLibraryPath)*.dll" "$(OutDir)"
         xcopy /Y "$(SDL2TTFLibraryPath)*.dll" "$(OutDir)"
+        xcopy /Y "$(LuaLibraryPath)*.dll" "$(OutDir)"
       </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>

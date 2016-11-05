@@ -13,7 +13,7 @@
         <SDL2ImageLibraryPath>$(ExternalsDir)SDL2_image-$(SDL2ImageVersion)\lib\x86\</SDL2ImageLibraryPath>
         <SDL2TTFIncludePath>$(ExternalsDir)SDL2_ttf-$(SDL2TTFVersion)\include\</SDL2TTFIncludePath>
         <SDL2TTFLibraryPath>$(ExternalsDir)SDL2_ttf-$(SDL2TTFVersion)\lib\x86\</SDL2TTFLibraryPath>
-        <LuaIncludePath>$(ExternalsDir)lua-$(LuaVersion)_Win32_vc14_lib\include\</LuaIncludePath>
-        <LuaLibraryPath>$(ExternalsDir)lua-$(LuaVersion)_Win32_vc14_lib\</LuaLibraryPath>
+        <LuaIncludePath>$(ExternalsDir)lua-$(LuaVersion)_Win32_dll14_lib\include\</LuaIncludePath>
+        <LuaLibraryPath>$(ExternalsDir)lua-$(LuaVersion)_Win32_dll14_lib\</LuaLibraryPath>
     </PropertyGroup>
 </Project>
