@@ -12,13 +12,19 @@
 #include <Graphics/Window.h>
 #include <Input/SDLEventProducer.h>
 #include <UI/UI.h>
+#include <Utilities/Logging.h>
 
 using namespace Retort::Game;
 using namespace Retort::Graphics;
 using namespace Retort::Input;
 using namespace Retort::UI;
+using namespace Retort::Utilities;
 
 int main(int argc, char* argv[]) {
+    Logging logging;
+
+    log_INFO("Starting");
+
     SDLEnvironment environment;
     if (!environment.isValid()) {
         return 1;
@@ -44,6 +50,8 @@ int main(int argc, char* argv[]) {
     sdlEvents->setConsumer(ui);
     ui->setConsumer(game);
     sdlEvents->run();
+
+    log_INFO("Exiting");
 
     return 0;
 }

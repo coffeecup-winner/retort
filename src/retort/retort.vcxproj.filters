@@ -38,6 +38,9 @@
     <ClCompile Include="Scripting\Runtime.cpp">
       <Filter>Scripting</Filter>
     </ClCompile>
+    <ClCompile Include="Utilities\Logging.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Graphics">
@@ -116,6 +119,9 @@
     </ClInclude>
     <ClInclude Include="Scripting\Runtime.h">
       <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Logging.h">
+      <Filter>Utilities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

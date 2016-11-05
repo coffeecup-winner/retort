@@ -133,6 +133,7 @@
     <ClCompile Include="UI\Panel.cpp" />
     <ClCompile Include="UI\PipelineControl.cpp" />
     <ClCompile Include="UI\UI.cpp" />
+    <ClCompile Include="Utilities\Logging.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game\Game.h" />
@@ -152,6 +153,7 @@
     <ClInclude Include="UI\UI.h" />
     <ClInclude Include="UI\UIEvent.h" />
     <ClInclude Include="Utilities\Consumer.h" />
+    <ClInclude Include="Utilities\Logging.h" />
     <ClInclude Include="Utilities\Producer.h" />
     <ClInclude Include="Utilities\Transformer.h" />
   </ItemGroup>
