@@ -39,6 +39,7 @@ int main(int argc, char* argv[]) {
     auto sdlEvents = std::make_shared<SDLEventProducer>();
     auto ui = std::make_shared<UI>(renderer);
     auto game = std::make_shared<Game>();
+    game->init();
 
     sdlEvents->setConsumer(ui);
     ui->setConsumer(game);

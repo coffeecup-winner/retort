@@ -35,6 +35,9 @@
     <ClCompile Include="UI\PipelineControl.cpp">
       <Filter>UI</Filter>
     </ClCompile>
+    <ClCompile Include="Scripting\Runtime.cpp">
+      <Filter>Scripting</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Graphics">
@@ -51,6 +54,9 @@
     </Filter>
     <Filter Include="Game">
       <UniqueIdentifier>{9b13ccba-df20-4970-a733-5f1664f8182b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripting">
+      <UniqueIdentifier>{48812545-8dda-46bd-a852-87c50bb38c69}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -104,6 +110,12 @@
     </ClInclude>
     <ClInclude Include="UI\PipelineControlEvent.h">
       <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripting\Dictionary.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripting\Runtime.h">
+      <Filter>Scripting</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
