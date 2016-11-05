@@ -1,8 +1,8 @@
 #pragma once
 
-#include <string>
-
 #include <lua.hpp>
+
+#include <Utilities/Logging.h>
 
 namespace Retort::Scripting {
     class Runtime {

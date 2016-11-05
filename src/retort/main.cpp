@@ -1,9 +1,3 @@
-#include <iostream>
-#include <string>
-
-#include <SDL.h>
-#include <SDL_ttf.h>
-
 #include <Game/Game.h>
 #include <Graphics/Colors.h>
 #include <Graphics/Fonts.h>
@@ -27,25 +21,27 @@ int main(int argc, char* argv[]) {
 
     SDLEnvironment environment;
     if (!environment.isValid()) {
-        return 1;
+        crash("Failed to initialize SDL: %s", SDL_GetError());
     }
 
     Window window("Hello World!", 640, 480);
     if (!window.isValid()) {
-        std::cout << "SDL_CreateWindow Error: " << SDL_GetError() << std::endl;
-        return 1;
+        crash("Failed to create window: %s", SDL_GetError());
     }
 
     auto renderer = std::make_shared<Renderer>(window);
     if (!renderer->isValid()) {
-        std::cout << "SDL_CreateRenderer Error: " << SDL_GetError() << std::endl;
-        return 1;
+        crash("Failed to create renderer: %s", SDL_GetError());
     }
+
+    log_INFO("Initialized SDL");
 
     auto sdlEvents = std::make_shared<SDLEventProducer>();
     auto ui = std::make_shared<UI>(renderer);
     auto game = std::make_shared<Game>();
     game->init();
+
+    log_INFO("Initialized game");
 
     sdlEvents->setConsumer(ui);
     ui->setConsumer(game);
