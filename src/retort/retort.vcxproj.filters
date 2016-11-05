@@ -123,5 +123,8 @@
     <ClInclude Include="Utilities\Logging.h">
       <Filter>Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="Utilities\LoggingDecorator.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

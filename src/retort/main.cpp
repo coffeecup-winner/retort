@@ -7,6 +7,7 @@
 #include <Input/SDLEventProducer.h>
 #include <UI/UI.h>
 #include <Utilities/Logging.h>
+#include <Utilities/LoggingDecorator.h>
 
 using namespace Retort::Game;
 using namespace Retort::Graphics;
@@ -38,13 +39,17 @@ int main(int argc, char* argv[]) {
 
     auto sdlEvents = std::make_shared<SDLEventProducer>();
     auto ui = std::make_shared<UI>(renderer);
+    auto uiEventLogger = std::make_shared<LoggingDecorator<UIEvent>>([](std::iostream &stream, const UIEvent &event) {
+        return event.dump(stream);
+    });
     auto game = std::make_shared<Game>();
     game->init();
 
     log_INFO("Initialized game");
 
     sdlEvents->setConsumer(ui);
-    ui->setConsumer(game);
+    ui->setConsumer(uiEventLogger);
+    uiEventLogger->setConsumer(game);
     sdlEvents->run();
 
     log_INFO("Exiting");

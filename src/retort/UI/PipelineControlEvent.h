@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 namespace Retort::UI {
     struct PipelineControlEvent {
         enum {
@@ -17,5 +19,12 @@ namespace Retort::UI {
             , cellClickX(x)
             , cellClickY(y)
         { }
+
+        void dump(std::iostream &stream) const {
+            switch (type) {
+            case PipelineControlEvent::CellClick: stream << "CellClick (" << cellClickX << ", " << cellClickY << ")"; break;
+            default: stream << "Unknown event type";
+            }
+        }
     };
 }

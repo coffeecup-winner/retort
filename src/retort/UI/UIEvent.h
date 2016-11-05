@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 #include <UI/PipelineControlEvent.h>
 
 namespace Retort::UI {
@@ -15,5 +17,12 @@ namespace Retort::UI {
             : control(UIEvent::PipelineControl)
             , pipelineControlEvent(event)
         { }
+
+        void dump(std::iostream &stream) const {
+            switch (control) {
+            case UIEvent::PipelineControl: stream << "PipelineControl::"; pipelineControlEvent.dump(stream); break;
+            default: stream << "Unknown control type";
+            }
+        }
     };
 }
