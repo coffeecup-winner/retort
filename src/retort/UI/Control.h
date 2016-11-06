@@ -15,22 +15,26 @@ namespace Retort::UI {
         Control(Control const &) = delete;
         Control &operator=(Control const &) = delete;
 
+        std::string _name;
         Rect _bounds;
         Color _backgroundColor;
         int _mouseDownX;
         int _mouseDownY;
 
     protected:
-        Control();
-        const Rect getBounds();
-        const Color getBackgroundColor();
+        explicit Control(const std::string &name);
         int getMouseDownX() const;
         int getMouseDownY() const;
 
     public:
         virtual ~Control();
+        const std::string &getName() const;
+        const Rect &getBounds() const;
+        const Color &getBackgroundColor() const;
+
         virtual Feedback consume(const SDL_Event &event) override;
         virtual void render(std::shared_ptr<Renderer> renderer, std::shared_ptr<Fonts> fonts) = 0;
+
         void move(int x, int y);
         void resize(int w, int h);
     };

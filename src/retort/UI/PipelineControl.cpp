@@ -1,10 +1,14 @@
 #include "PipelineControl.h"
 
 namespace Retort::UI {
+    PipelineControl::PipelineControl(const std::string &name)
+        : Control(name)
+    { }
+
     Feedback PipelineControl::consume(const SDL_Event &event) {
         Control::consume(event);
         if (event.type == SDL_MOUSEBUTTONUP && event.button.button == SDL_BUTTON_LEFT) {
-            auto click = UIEvent(PipelineControlEvent(getMouseDownX() / 32, getMouseDownY() / 32));
+            auto click = UIEvent(getName(), PipelineControlEvent(getMouseDownX() / 32, getMouseDownY() / 32));
             _consumer->consume(click);
         }
         return Feedback::Continue;

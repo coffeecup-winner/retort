@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <map>
 
 #include <Graphics/Colors.h>
 #include <Graphics/Fonts.h>
@@ -21,6 +22,7 @@ namespace Retort::UI {
         std::shared_ptr<Renderer> _renderer;
 
         std::shared_ptr<PipelineControl> _root;
+        std::map<std::string, std::weak_ptr<Control>> _controls;
 
     public:
         explicit UI(std::shared_ptr<Renderer> renderer);

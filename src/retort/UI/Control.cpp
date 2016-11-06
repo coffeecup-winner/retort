@@ -1,19 +1,12 @@
 #include "Control.h"
 
 namespace Retort::UI {
-    Control::Control()
+    Control::Control(const std::string &name)
         : Transformer()
+        , _name(name)
         , _bounds({ 0, 0, 0, 0 })
         , _backgroundColor(Colors::WHITE)
     { }
-
-    const Rect Control::getBounds() {
-        return _bounds;
-    }
-
-    const Color Control::getBackgroundColor() {
-        return _backgroundColor;
-    }
 
     int Control::getMouseDownX() const {
         return _mouseDownX;
@@ -24,6 +17,18 @@ namespace Retort::UI {
     }
 
     Control::~Control() { }
+
+    const std::string &Control::getName() const {
+        return _name;
+    }
+
+    const Rect &Control::getBounds() const {
+        return _bounds;
+    }
+
+    const Color &Control::getBackgroundColor() const {
+        return _backgroundColor;
+    }
 
     Feedback Control::consume(const SDL_Event &event) {
         if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {

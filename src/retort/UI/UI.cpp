@@ -5,10 +5,12 @@ namespace Retort::UI {
         : Transformer()
         , _fonts(std::make_shared<Fonts>())
         , _renderer(renderer)
-        , _root(std::make_shared<PipelineControl>())
+        , _root(std::make_shared<PipelineControl>("pipeline"))
+        , _controls(std::map<std::string, std::weak_ptr<Control>>())
     {
         // TODO: merge with Window to remove the hard-coded values
         _root->resize(640, 480);
+        _controls.insert(std::make_pair(_root->getName(), _root));
     }
 
     void UI::setConsumer(std::shared_ptr<Consumer<UIEvent>> consumer) {
