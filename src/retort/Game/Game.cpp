@@ -1,8 +1,9 @@
 #include "Game.h"
 
 namespace Retort::Game {
-    Game::Game()
+    Game::Game(std::shared_ptr<UIScriptObject> ui)
         : _runtime(std::make_shared<Runtime>())
+        , _ui(ui)
     { }
 
     Feedback Game::consume(const UIEvent &event) {
@@ -25,6 +26,7 @@ namespace Retort::Game {
     }
 
     void Game::init() {
+        _runtime->assign("ui", _ui);
         _runtime->loadFile("scripts/main.lua");
         _runtime->invokeFunction("onInit");
     }

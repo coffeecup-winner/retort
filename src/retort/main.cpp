@@ -42,7 +42,7 @@ int main(int argc, char* argv[]) {
     auto uiEventLogger = std::make_shared<LoggingDecorator<UIEvent>>([](std::iostream &stream, const UIEvent &event) {
         return event.dump(stream);
     });
-    auto game = std::make_shared<Game>();
+    auto game = std::make_shared<Game>(ui->getScriptObject());
     game->init();
 
     log_INFO("Initialized game");

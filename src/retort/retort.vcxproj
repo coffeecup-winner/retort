@@ -129,6 +129,8 @@
     <ClCompile Include="Input\SDLEventProducer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scripting\Runtime.cpp" />
+    <ClCompile Include="Scripting\ScriptObject.cpp" />
+    <ClCompile Include="Scripting\UIScriptObject.cpp" />
     <ClCompile Include="UI\Control.cpp" />
     <ClCompile Include="UI\Panel.cpp" />
     <ClCompile Include="UI\GridControl.cpp" />
@@ -144,8 +146,9 @@
     <ClInclude Include="Graphics\SDLEnvironment.h" />
     <ClInclude Include="Graphics\Window.h" />
     <ClInclude Include="Input\SDLEventProducer.h" />
-    <ClInclude Include="Scripting\Dictionary.h" />
+    <ClInclude Include="Scripting\ScriptObject.h" />
     <ClInclude Include="Scripting\Runtime.h" />
+    <ClInclude Include="Scripting\UIScriptObject.h" />
     <ClInclude Include="UI\Control.h" />
     <ClInclude Include="UI\Panel.h" />
     <ClInclude Include="UI\GridControl.h" />

@@ -3,6 +3,7 @@
 #include <memory>
 
 #include <Scripting/Runtime.h>
+#include <Scripting/UIScriptObject.h>
 #include <UI/UI.h>
 #include <UI/UIEvent.h>
 #include <Utilities/Consumer.h>
@@ -17,9 +18,10 @@ namespace Retort::Game {
         Game &operator=(Game const &) = delete;
 
         std::shared_ptr<Runtime> _runtime;
+        std::shared_ptr<UIScriptObject> _ui;
 
     public:
-        Game();
+        Game(std::shared_ptr<UIScriptObject> ui);
         Feedback consume(const UIEvent &event) override;
         Feedback frameEnded() override;
         void init();

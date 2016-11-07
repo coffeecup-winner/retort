@@ -1,32 +1,58 @@
 #pragma once
 
+#include <cstdint>
+#include <memory>
+#include <map>
+
 #include <lua.hpp>
 
+#include <Scripting/ScriptObject.h>
 #include <Utilities/Logging.h>
 
 namespace Retort::Scripting {
-    class Runtime {
-        lua_State *_state;
+    class ScriptObject;
 
-    private:
-        void push();
+    class Runtime : public std::enable_shared_from_this<Runtime> {
+        lua_State *_state;
+        std::map<std::intptr_t, std::shared_ptr<ScriptObject>> _managedObjects;
+
         template <typename ...Types>
-        void push(bool b, Types... params);
+        void pushArgs();
         template <typename ...Types>
-        void push(decltype(nullptr), Types... params);
+        void pushArgs(bool b, Types... params);
         template <typename ...Types>
-        void push(int i, Types... params);
+        void pushArgs(std::nullptr_t n, Types... params);
         template <typename ...Types>
-        void push(double d, Types... params);
+        void pushArgs(int i, Types... params);
         template <typename ...Types>
-        void push(const std::string &s, Types... params);
+        void pushArgs(double d, Types... params);
         template <typename ...Types>
-        void push(lua_CFunction f, Types... params);
+        void pushArgs(const std::string &s, Types... params);
+        template <typename ...Types>
+        void pushArgs(lua_CFunction f, Types... params);
+        template <typename ...Types>
+        void pushArgs(std::shared_ptr<ScriptObject> o, Types... params);
+        
+        void push(bool b);
+        void push(std::nullptr_t n);
+        void push(int i);
+        void push(double d);
+        void push(const std::string &s);
+        void push(lua_CFunction f);
+        void push(std::shared_ptr<ScriptObject> &o);
+        void assign(const std::string &name);
 
     public:
         Runtime();
         ~Runtime();
 
+        void assign(const std::string &name, bool b);
+        void assign(const std::string &name, std::nullptr_t n);
+        void assign(const std::string &name, int i);
+        void assign(const std::string &name, double d);
+        void assign(const std::string &name, const std::string &s);
+        void assign(const std::string &name, lua_CFunction f);
+        void assign(const std::string &name, std::shared_ptr<ScriptObject> o);
         void loadFile(const std::string &filepath);
         template <typename ...Types>
         void invokeFunction(const std::string &functionName, Types... params);
@@ -35,39 +61,49 @@ namespace Retort::Scripting {
     };
 
     template <typename ...Types>
-    void Runtime::push(bool b, Types... params) {
-        lua_pushboolean(_state, b);
-        push(params...);
+    inline void Runtime::pushArgs() { }
+
+    template <typename ...Types>
+    inline void Runtime::pushArgs(bool b, Types... params) {
+        push(b);
+        pushArgs(params...);
     }
 
     template <typename ...Types>
-    void Runtime::push(decltype(nullptr), Types... params) {
-        lua_pushnil(_state);
-        push(params...);
+    inline void Runtime::pushArgs(std::nullptr_t n, Types... params) {
+        push(n);
+        pushArgs(params...);
     }
 
     template <typename ...Types>
-    void Runtime::push(int i, Types... params) {
-        lua_pushinteger(_state, i);
-        push(params...);
+    inline void Runtime::pushArgs(int i, Types... params) {
+        push(i);
+        pushArgs(params...);
     }
 
     template <typename ...Types>
-    void Runtime::push(double d, Types... params) {
-        lua_pushnumber(_state, d);
-        push(params...);
+    inline void Runtime::pushArgs(double d, Types... params) {
+        push(d);
+        pushArgs(params...);
     }
 
     template <typename ...Types>
-    void Runtime::push(const std::string &s, Types... params) {
-        lua_pushstring(_state, s.c_str());
-        push(params...);
+    inline void Runtime::pushArgs(const std::string &s, Types... params) {
+        push(s);
+        pushArgs(params...);
     }
 
     template <typename ...Types>
-    void Runtime::push(lua_CFunction f, Types... params) {
-        lua_pushcfunction(_state, f);
-        push(params...);
+    inline void Runtime::pushArgs(lua_CFunction f, Types... params) {
+        push(f);
+        pushArgs(params...);
+    }
+
+    template<typename ...Types>
+    inline void Runtime::pushArgs(std::shared_ptr<ScriptObject> o, Types ...params)
+    {
+        push(o);
+        pushArgs(params...);
     }
 
     template <typename ...Types>
@@ -77,7 +113,7 @@ namespace Retort::Scripting {
         case LUA_TFUNCTION: break;
         default: crash("Global variable %s is not a function", functionName.c_str());
         }
-        push(params...);
+        pushArgs(params...);
         if (lua_pcall(_state, constexpr { sizeof...(Types) }, 0, 0)) {
             crash("Failed to to invoke a function: %s", lua_tostring(_state, -1));
         }
@@ -96,7 +132,7 @@ namespace Retort::Scripting {
         case LUA_TFUNCTION: break;
         default: crash("Member %s.%s is not a function", object.c_str(), methodName.c_str());
         }
-        push(params...);
+        pushArgs(params...);
         if (lua_pcall(_state, constexpr { sizeof...(Types) }, 0, 0)) {
             crash("Failed to to invoke a function: %s", lua_tostring(_state, -1));
         }

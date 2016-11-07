@@ -41,6 +41,12 @@
     <ClCompile Include="Utilities\Logging.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
+    <ClCompile Include="Scripting\ScriptObject.cpp">
+      <Filter>Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripting\UIScriptObject.cpp">
+      <Filter>Scripting</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Graphics">
@@ -114,9 +120,6 @@
     <ClInclude Include="UI\GridControlEvent.h">
       <Filter>UI</Filter>
     </ClInclude>
-    <ClInclude Include="Scripting\Dictionary.h">
-      <Filter>Scripting</Filter>
-    </ClInclude>
     <ClInclude Include="Scripting\Runtime.h">
       <Filter>Scripting</Filter>
     </ClInclude>
@@ -125,6 +128,12 @@
     </ClInclude>
     <ClInclude Include="Utilities\LoggingDecorator.h">
       <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripting\ScriptObject.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripting\UIScriptObject.h">
+      <Filter>Scripting</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
