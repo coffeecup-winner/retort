@@ -131,7 +131,7 @@
     <ClCompile Include="Scripting\Runtime.cpp" />
     <ClCompile Include="UI\Control.cpp" />
     <ClCompile Include="UI\Panel.cpp" />
-    <ClCompile Include="UI\PipelineControl.cpp" />
+    <ClCompile Include="UI\GridControl.cpp" />
     <ClCompile Include="UI\UI.cpp" />
     <ClCompile Include="Utilities\Logging.cpp" />
   </ItemGroup>
@@ -148,8 +148,8 @@
     <ClInclude Include="Scripting\Runtime.h" />
     <ClInclude Include="UI\Control.h" />
     <ClInclude Include="UI\Panel.h" />
-    <ClInclude Include="UI\PipelineControl.h" />
-    <ClInclude Include="UI\PipelineControlEvent.h" />
+    <ClInclude Include="UI\GridControl.h" />
+    <ClInclude Include="UI\GridControlEvent.h" />
     <ClInclude Include="UI\UI.h" />
     <ClInclude Include="UI\UIEvent.h" />
     <ClInclude Include="Utilities\Consumer.h" />

@@ -5,7 +5,7 @@ namespace Retort::UI {
         : Transformer()
         , _fonts(std::make_shared<Fonts>())
         , _renderer(renderer)
-        , _root(std::make_shared<PipelineControl>("pipeline"))
+        , _root(std::make_shared<GridControl>("pipeline"))
         , _controls(std::map<std::string, std::weak_ptr<Control>>())
     {
         // TODO: merge with Window to remove the hard-coded values

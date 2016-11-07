@@ -3,10 +3,10 @@
 #include <UI/Control.h>
 
 namespace Retort::UI {
-    class PipelineControl : public Control {
+    class GridControl : public Control {
 
     public:
-        explicit PipelineControl(const std::string &name);
+        explicit GridControl(const std::string &name);
         Feedback consume(const SDL_Event &event) override;
         void render(std::shared_ptr<Renderer> renderer, std::shared_ptr<Fonts> fonts) override;
     };

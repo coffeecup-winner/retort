@@ -3,7 +3,7 @@
 #include <iostream>
 
 namespace Retort::UI {
-    struct PipelineControlEvent {
+    struct GridControlEvent {
         enum {
             CellClick,
         } type;
@@ -14,15 +14,15 @@ namespace Retort::UI {
             };
         };
 
-        PipelineControlEvent(int x, int y)
-            : type(PipelineControlEvent::CellClick)
+        GridControlEvent(int x, int y)
+            : type(GridControlEvent::CellClick)
             , cellClickX(x)
             , cellClickY(y)
         { }
 
         void dump(std::iostream &stream) const {
             switch (type) {
-            case PipelineControlEvent::CellClick: stream << "CellClick (" << cellClickX << ", " << cellClickY << ")"; break;
+            case GridControlEvent::CellClick: stream << "CellClick (" << cellClickX << ", " << cellClickY << ")"; break;
             default: stream << "Unknown event type";
             }
         }

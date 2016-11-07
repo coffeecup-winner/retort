@@ -32,7 +32,7 @@
     <ClCompile Include="UI\Control.cpp">
       <Filter>UI</Filter>
     </ClCompile>
-    <ClCompile Include="UI\PipelineControl.cpp">
+    <ClCompile Include="UI\GridControl.cpp">
       <Filter>UI</Filter>
     </ClCompile>
     <ClCompile Include="Scripting\Runtime.cpp">
@@ -105,13 +105,13 @@
     <ClInclude Include="Graphics\Geometry.h">
       <Filter>Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="UI\PipelineControl.h">
+    <ClInclude Include="UI\GridControl.h">
       <Filter>UI</Filter>
     </ClInclude>
     <ClInclude Include="Utilities\Transformer.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="UI\PipelineControlEvent.h">
+    <ClInclude Include="UI\GridControlEvent.h">
       <Filter>UI</Filter>
     </ClInclude>
     <ClInclude Include="Scripting\Dictionary.h">

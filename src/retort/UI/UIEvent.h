@@ -2,28 +2,28 @@
 
 #include <iostream>
 
-#include <UI/PipelineControlEvent.h>
+#include <UI/GridControlEvent.h>
 
 namespace Retort::UI {
     struct UIEvent {
         std::string name;
         enum {
-            PipelineControl,
+            GridControl,
         } control;
         union {
-            PipelineControlEvent pipelineControlEvent;
+            GridControlEvent gridControlEvent;
         };
 
-        UIEvent(const std::string &name, PipelineControlEvent event)
+        UIEvent(const std::string &name, GridControlEvent event)
             : name(name)
-            , control(UIEvent::PipelineControl)
-            , pipelineControlEvent(event)
+            , control(UIEvent::GridControl)
+            , gridControlEvent(event)
         { }
 
         void dump(std::iostream &stream) const {
             stream << "[" << name << "] ";
             switch (control) {
-            case UIEvent::PipelineControl: stream << "PipelineControl::"; pipelineControlEvent.dump(stream); break;
+            case UIEvent::GridControl: stream << "GridControl::"; gridControlEvent.dump(stream); break;
             default: stream << "Unknown control type";
             }
         }

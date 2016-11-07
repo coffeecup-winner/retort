@@ -7,7 +7,7 @@
 #include <Graphics/Fonts.h>
 #include <Graphics/Renderer.h>
 #include <UI/UIEvent.h>
-#include <UI/PipelineControl.h>
+#include <UI/GridControl.h>
 #include <Utilities/Transformer.h>
 
 using namespace Retort::Graphics;
@@ -21,7 +21,7 @@ namespace Retort::UI {
         std::shared_ptr<Fonts> _fonts;
         std::shared_ptr<Renderer> _renderer;
 
-        std::shared_ptr<PipelineControl> _root;
+        std::shared_ptr<GridControl> _root;
         std::map<std::string, std::weak_ptr<Control>> _controls;
 
     public:
