@@ -1,4 +1,10 @@
 
 function onInit()
-    print('Hello, world!')
+    log.info('Hello, world!')
 end
+
+pipeline = {
+    onCellClick = function (x, y)
+        log.warn('Click: (' .. x .. ', ' .. y .. ')')
+    end
+}
