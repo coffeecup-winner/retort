@@ -32,26 +32,38 @@ namespace Retort::Scripting {
         void pushArgs(lua_CFunction f, Types... params);
         template <typename ...Types>
         void pushArgs(std::shared_ptr<ScriptObject> o, Types... params);
-        
+
+    public:
+        template <typename Object>
+        struct Closure {
+            Closure() {
+                static_assert(std::is_base_of<ScriptObject, Object>::value, "Can't unpack closure with non-script object type");
+            }
+            Runtime *runtime;
+            Object *that;
+        };
+
+        Runtime();
+        ~Runtime();
+        template <typename Object>
+        static Closure<Object> unpackClosure(lua_State *L);
+
         void push(bool b);
         void push(std::nullptr_t n);
         void push(int i);
         void push(double d);
         void push(const std::string &s);
         void push(lua_CFunction f);
+        void push(lua_CFunction f, int upvaluesCount);
         void push(std::shared_ptr<ScriptObject> &o);
         void assign(const std::string &name);
-
-    public:
-        Runtime();
-        ~Runtime();
-
         void assign(const std::string &name, bool b);
         void assign(const std::string &name, std::nullptr_t n);
         void assign(const std::string &name, int i);
         void assign(const std::string &name, double d);
         void assign(const std::string &name, const std::string &s);
         void assign(const std::string &name, lua_CFunction f);
+        void assign(const std::string &name, ScriptObject *that, lua_CFunction f);
         void assign(const std::string &name, std::shared_ptr<ScriptObject> o);
         void loadFile(const std::string &filepath);
         template <typename ...Types>
@@ -59,6 +71,14 @@ namespace Retort::Scripting {
         template <typename ...Types>
         void invokeMethod(const std::string &object, const std::string &methodName, Types... params);
     };
+
+    template <typename Object>
+    static Runtime::Closure<Object> Runtime::unpackClosure(lua_State *L) {
+        Runtime::Closure<Object> closure;
+        closure.runtime = reinterpret_cast<Runtime *>(lua_tointeger(L, lua_upvalueindex(1)));
+        closure.that = reinterpret_cast<Object *>(lua_tointeger(L, lua_upvalueindex(2)));
+        return closure;
+    }
 
     template <typename ...Types>
     inline void Runtime::pushArgs() { }

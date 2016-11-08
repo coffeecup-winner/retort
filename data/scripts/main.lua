@@ -1,8 +1,7 @@
 
 function onInit()
-    if ui ~= nil then
-        log.info('UI is not nil')
-    end
+    grid = ui.newGrid()
+    assert (grid == nil) 
     log.info('Hello, world!')
 end
 

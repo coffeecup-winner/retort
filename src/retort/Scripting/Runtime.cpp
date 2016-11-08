@@ -30,7 +30,12 @@ namespace Retort::Scripting {
     {
         lua_pushcfunction(_state, f);
     }
-    
+
+    void Runtime::push(lua_CFunction f, int upvaluesCount)
+    {
+        lua_pushcclosure(_state, f, upvaluesCount);
+    }
+
     void Runtime::push(std::shared_ptr<ScriptObject> &o)
     {
         struct GC {
@@ -47,8 +52,10 @@ namespace Retort::Scripting {
             log_INFO("Creating metatable for type %s", o->getMetaTableName().c_str());
             lua_pop(_state, 1);
             luaL_newmetatable(_state, o->getMetaTableName().c_str());
+            lua_newtable(_state);
             o->fillMetaTable(this->shared_from_this());
-            pushArgs([](lua_State *L) -> int {
+            assign("__index");
+            assign("__gc", [](lua_State *L) -> int {
                 if (lua_type(L, -1) != LUA_TUSERDATA) {
                     return 0; // TODO: assert instead
                 }
@@ -57,7 +64,6 @@ namespace Retort::Scripting {
                 log_INFO("[GC] collected %x", gc->key);
                 return 0;
             });
-            lua_setfield(_state, -2, "__gc");
         }
         lua_setmetatable(_state, -2);
     }
@@ -152,6 +158,14 @@ namespace Retort::Scripting {
     void Runtime::assign(const std::string &name, lua_CFunction f)
     {
         push(f);
+        assign(name);
+    }
+
+    void Runtime::assign(const std::string &name, ScriptObject *that, lua_CFunction f)
+    {
+        push(reinterpret_cast<int>(this));
+        push(reinterpret_cast<int>(that));
+        push(f, 2);
         assign(name);
     }
 
