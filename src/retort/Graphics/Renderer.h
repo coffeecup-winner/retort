@@ -1,6 +1,5 @@
 #pragma once
-
-#include <memory>
+#include <common.h>
 
 #include <SDL.h>
 #include <SDL_ttf.h>
@@ -12,8 +11,7 @@
 
 namespace Retort::Graphics {
     class Renderer {
-        Renderer(Renderer const &) = delete;
-        Renderer &operator=(Renderer const &) = delete;
+        noncopyable(Renderer)
 
         std::shared_ptr<SDL_Renderer> _renderer;
 

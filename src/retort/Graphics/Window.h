@@ -1,14 +1,11 @@
 #pragma once
-
-#include <memory>
-#include <string>
+#include <common.h>
 
 #include <SDL.h>
 
 namespace Retort::Graphics {
     class Window {
-        Window(Window const &) = delete;
-        Window &operator=(Window const &) = delete;
+        noncopyable(Window)
 
         std::shared_ptr<SDL_Window> _window;
 

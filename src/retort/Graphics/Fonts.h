@@ -1,6 +1,5 @@
 #pragma once
-
-#include <memory>
+#include <common.h>
 
 #include <SDL_ttf.h>
 
@@ -8,8 +7,7 @@ namespace Retort::Graphics {
     typedef TTF_Font Font;
 
     class Fonts {
-        Fonts(const Fonts &) = delete;
-        Fonts &operator=(const Fonts &) = delete;
+        noncopyable(Fonts)
 
         std::shared_ptr<Font> _ubuntu14;
 

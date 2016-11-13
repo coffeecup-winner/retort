@@ -1,6 +1,5 @@
 #pragma once
-
-#include <iostream>
+#include <common.h>
 
 #include <SDL.h>
 #include <SDL_image.h>
@@ -8,8 +7,7 @@
 
 namespace Retort::Graphics {
     class SDLEnvironment {
-        SDLEnvironment(const SDLEnvironment &) = delete;
-        SDLEnvironment &operator=(const SDLEnvironment &) = delete;
+        noncopyable(SDLEnvironment)
 
         bool _isValid;
 
