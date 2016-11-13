@@ -144,5 +144,6 @@
     <ClInclude Include="Scripting\ScriptObjectWrapper.h">
       <Filter>Scripting</Filter>
     </ClInclude>
+    <ClInclude Include="common.h" />
   </ItemGroup>
 </Project>

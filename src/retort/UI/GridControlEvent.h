@@ -1,6 +1,5 @@
 #pragma once
-
-#include <iostream>
+#include <common.h>
 
 namespace Retort::UI {
     struct GridControlEvent {

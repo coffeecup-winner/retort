@@ -1,6 +1,5 @@
 #pragma once
-
-#include <memory>
+#include <common.h>
 
 #include <Graphics/Renderer.h>
 #include <UI/UIEvent.h>

@@ -1,8 +1,5 @@
 #pragma once
-
-#include <cstdint>
-#include <memory>
-#include <map>
+#include <common.h>
 
 #include <lua.hpp>
 

@@ -1,7 +1,5 @@
 #pragma once
-
-#include <memory>
-#include <map>
+#include <common.h>
 
 #include <Graphics/Colors.h>
 #include <Graphics/Fonts.h>

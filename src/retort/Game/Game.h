@@ -1,6 +1,5 @@
 #pragma once
-
-#include <memory>
+#include <common.h>
 
 #include <Scripting/Runtime.h>
 #include <Scripting/UIScriptObject.h>

@@ -1,4 +1,5 @@
 #pragma once
+#include <common.h>
 
 #include <Scripting/Runtime.h>
 #include <Scripting/ScriptObjectWrapper.h>

@@ -1,6 +1,5 @@
 #pragma once
-
-#include <iostream>
+#include <common.h>
 
 #include <UI/GridControlEvent.h>
 

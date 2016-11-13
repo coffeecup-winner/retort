@@ -1,6 +1,5 @@
 #pragma once
-
-#include <memory>
+#include <common.h>
 
 #include <Utilities/Producer.h>
 
