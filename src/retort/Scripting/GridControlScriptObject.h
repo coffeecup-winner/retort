@@ -1,15 +1,14 @@
 #pragma once
 
-#include <Scripting/Runtime.h>
 #include <Scripting/ScriptObjectWrapper.h>
-#include <UI/UI.h>
+#include <UI/GridControl.h>
 
 using namespace Retort::UI;
 
 namespace Retort::Scripting {
-    class UIScriptObject : public ScriptObjectWrapper<UI::UI> {
+    class GridControlScriptObject : public ScriptObjectWrapper<GridControl> {
     public:
-        UIScriptObject(const std::shared_ptr<UI::UI> &ui);
+        GridControlScriptObject(const std::string &name);
         void fillMetaTable(std::shared_ptr<Runtime> state) override;
     };
 }

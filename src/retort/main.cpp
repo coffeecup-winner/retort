@@ -42,14 +42,15 @@ int main(int argc, char* argv[]) {
     auto uiEventLogger = std::make_shared<LoggingDecorator<UIEvent>>([](std::iostream &stream, const UIEvent &event) {
         return event.dump(stream);
     });
-    auto game = std::make_shared<Game>(ui->getScriptObject());
-    game->init();
+    auto game = std::make_shared<Game>(ui);
 
     log_INFO("Initialized game");
 
     sdlEvents->setConsumer(ui);
     ui->setConsumer(uiEventLogger);
     uiEventLogger->setConsumer(game);
+
+    game->init();
     sdlEvents->run();
 
     log_INFO("Exiting");

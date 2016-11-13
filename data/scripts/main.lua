@@ -1,8 +1,6 @@
 
 function onInit()
-    grid = ui.newGrid()
-    assert (grid == nil) 
-    log.info('Hello, world!')
+    ui.show(ui.newGrid('pipeline'))
 end
 
 pipeline = {

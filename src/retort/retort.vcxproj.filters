@@ -47,6 +47,9 @@
     <ClCompile Include="Scripting\UIScriptObject.cpp">
       <Filter>Scripting</Filter>
     </ClCompile>
+    <ClCompile Include="Scripting\GridControlScriptObject.cpp">
+      <Filter>Scripting</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Graphics">
@@ -133,6 +136,12 @@
       <Filter>Scripting</Filter>
     </ClInclude>
     <ClInclude Include="Scripting\UIScriptObject.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripting\GridControlScriptObject.h">
+      <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripting\ScriptObjectWrapper.h">
       <Filter>Scripting</Filter>
     </ClInclude>
   </ItemGroup>

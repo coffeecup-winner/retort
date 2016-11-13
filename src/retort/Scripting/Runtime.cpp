@@ -1,86 +1,8 @@
 #include "Runtime.h"
 
 namespace Retort::Scripting {
-    void Runtime::push(bool b)
-    {
-        lua_pushboolean(_state, b);
-    }
-
-    void Runtime::push(std::nullptr_t n)
-    {
-        lua_pushnil(_state);
-    }
-
-    void Runtime::push(int i)
-    {
-        lua_pushinteger(_state, i);
-    }
-
-    void Runtime::push(double d)
-    {
-        lua_pushnumber(_state, d);
-    }
-
-    void Runtime::push(const std::string & s)
-    {
-        lua_pushstring(_state, s.c_str());
-    }
-
-    void Runtime::push(lua_CFunction f)
-    {
-        lua_pushcfunction(_state, f);
-    }
-
-    void Runtime::push(lua_CFunction f, int upvaluesCount)
-    {
-        lua_pushcclosure(_state, f, upvaluesCount);
-    }
-
-    void Runtime::push(std::shared_ptr<ScriptObject> &o)
-    {
-        struct GC {
-            std::map<std::intptr_t, std::shared_ptr<ScriptObject>> *managedObjects;
-            std::intptr_t key;
-        };
-
-        auto key = reinterpret_cast<std::intptr_t>(o.get());
-        _managedObjects.insert(std::make_pair(key, o));
-        new (lua_newuserdata(_state, sizeof(GC))) GC{ &_managedObjects, key };
-        log_INFO("[GC] allocated a new object of type %s: %x", o->getMetaTableName().c_str(), key);
-
-        if (!luaL_getmetatable(_state, o->getMetaTableName().c_str())) {
-            log_INFO("Creating metatable for type %s", o->getMetaTableName().c_str());
-            lua_pop(_state, 1);
-            luaL_newmetatable(_state, o->getMetaTableName().c_str());
-            lua_newtable(_state);
-            o->fillMetaTable(this->shared_from_this());
-            assign("__index");
-            assign("__gc", [](lua_State *L) -> int {
-                if (lua_type(L, -1) != LUA_TUSERDATA) {
-                    return 0; // TODO: assert instead
-                }
-                auto gc = reinterpret_cast<GC *>(lua_touserdata(L, 1));
-                gc->managedObjects->erase(gc->key);
-                log_INFO("[GC] collected %x", gc->key);
-                return 0;
-            });
-        }
-        lua_setmetatable(_state, -2);
-    }
-
-    void Runtime::assign(const std::string &name)
-    {
-        if (lua_gettop(_state) == 1) {
-            lua_setglobal(_state, name.c_str());
-        }
-        else {
-            lua_setfield(_state, -2, name.c_str());
-        }
-    }
-
     Runtime::Runtime()
         : _state(luaL_newstate())
-        , _managedObjects(std::map<std::intptr_t, std::shared_ptr<ScriptObject>>())
     {
         luaopen_base(_state);
         lua_pop(_state, 1);
@@ -125,52 +47,105 @@ namespace Retort::Scripting {
         lua_close(_state);
     }
 
-    void Runtime::assign(const std::string &name, bool b)
-    {
+    void Runtime::push(bool b) {
+        lua_pushboolean(_state, b);
+    }
+
+    void Runtime::push(std::nullptr_t n) {
+        lua_pushnil(_state);
+    }
+
+    void Runtime::push(int i) {
+        lua_pushinteger(_state, i);
+    }
+
+    void Runtime::push(double d) {
+        lua_pushnumber(_state, d);
+    }
+
+    void Runtime::push(const std::string & s) {
+        lua_pushstring(_state, s.c_str());
+    }
+
+    void Runtime::push(lua_CFunction f) {
+        lua_pushcfunction(_state, f);
+    }
+
+    void Runtime::push(lua_CFunction f, int upvaluesCount) {
+        lua_pushcclosure(_state, f, upvaluesCount);
+    }
+
+    void Runtime::push(std::shared_ptr<ScriptObject> o) {
+        new (lua_newuserdata(_state, sizeof(o))) std::shared_ptr<ScriptObject>(o);
+        log_INFO("[GC] allocated a new object of type %s: %x", o->getMetaTableName().c_str(), o.get());
+
+        if (!luaL_getmetatable(_state, o->getMetaTableName().c_str())) {
+            log_INFO("Creating metatable for type %s", o->getMetaTableName().c_str());
+            lua_pop(_state, 1);
+            luaL_newmetatable(_state, o->getMetaTableName().c_str());
+            lua_newtable(_state);
+            o->fillMetaTable(this->shared_from_this());
+            assign("__index");
+            assign("__gc", [](lua_State *L) -> int {
+                if (lua_type(L, -1) != LUA_TUSERDATA) {
+                    crash("[GC] trying to collect non-userdata object");
+                }
+                auto obj = reinterpret_cast<std::shared_ptr<ScriptObject> *>(lua_touserdata(L, 1));
+                obj->reset();
+                log_INFO("[GC] collected %x", obj->get());
+                return 0;
+            });
+        }
+        lua_setmetatable(_state, -2);
+    }
+
+    void Runtime::assign(const std::string &name) {
+        if (lua_gettop(_state) == 1) {
+            lua_setglobal(_state, name.c_str());
+        }
+        else {
+            lua_setfield(_state, -2, name.c_str());
+        }
+    }
+
+    void Runtime::assign(const std::string &name, bool b) {
         push(b);
         assign(name);
     }
 
-    void Runtime::assign(const std::string &name, std::nullptr_t n)
-    {
+    void Runtime::assign(const std::string &name, std::nullptr_t n) {
         push(n);
         assign(name);
     }
 
-    void Runtime::assign(const std::string &name, int i)
-    {
+    void Runtime::assign(const std::string &name, int i) {
         push(i);
         assign(name);
     }
 
-    void Runtime::assign(const std::string &name, double d)
-    {
+    void Runtime::assign(const std::string &name, double d) {
         push(d);
         assign(name);
     }
 
-    void Runtime::assign(const std::string &name, const std::string &s)
-    {
+    void Runtime::assign(const std::string &name, const std::string &s) {
         push(s);
         assign(name);
     }
 
-    void Runtime::assign(const std::string &name, lua_CFunction f)
-    {
+    void Runtime::assign(const std::string &name, lua_CFunction f) {
         push(f);
         assign(name);
     }
 
-    void Runtime::assign(const std::string &name, ScriptObject *that, lua_CFunction f)
-    {
+    void Runtime::assign(const std::string &name, ScriptObject *that, lua_CFunction f) {
         push(reinterpret_cast<int>(this));
         push(reinterpret_cast<int>(that));
         push(f, 2);
         assign(name);
     }
 
-    void Runtime::assign(const std::string &name, std::shared_ptr<ScriptObject> o)
-    {
+    void Runtime::assign(const std::string &name, std::shared_ptr<ScriptObject> o) {
         push(o);
         assign(name);
     }

@@ -7,8 +7,7 @@ namespace Retort::Scripting {
 
     ScriptObject::~ScriptObject() { }
 
-    const std::string &ScriptObject::getMetaTableName() const
-    {
+    const std::string &ScriptObject::getMetaTableName() const {
         return _name;
     }
 }

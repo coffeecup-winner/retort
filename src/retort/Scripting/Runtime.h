@@ -14,7 +14,6 @@ namespace Retort::Scripting {
 
     class Runtime : public std::enable_shared_from_this<Runtime> {
         lua_State *_state;
-        std::map<std::intptr_t, std::shared_ptr<ScriptObject>> _managedObjects;
 
         template <typename ...Types>
         void pushArgs();
@@ -47,6 +46,8 @@ namespace Retort::Scripting {
         ~Runtime();
         template <typename Object>
         static Closure<Object> unpackClosure(lua_State *L);
+        template <typename Object>
+        static std::shared_ptr<Object> unpackUserdata(lua_State *L, int i);
 
         void push(bool b);
         void push(std::nullptr_t n);
@@ -55,7 +56,7 @@ namespace Retort::Scripting {
         void push(const std::string &s);
         void push(lua_CFunction f);
         void push(lua_CFunction f, int upvaluesCount);
-        void push(std::shared_ptr<ScriptObject> &o);
+        void push(std::shared_ptr<ScriptObject> o);
         void assign(const std::string &name);
         void assign(const std::string &name, bool b);
         void assign(const std::string &name, std::nullptr_t n);
@@ -78,6 +79,11 @@ namespace Retort::Scripting {
         closure.runtime = reinterpret_cast<Runtime *>(lua_tointeger(L, lua_upvalueindex(1)));
         closure.that = reinterpret_cast<Object *>(lua_tointeger(L, lua_upvalueindex(2)));
         return closure;
+    }
+
+    template<typename Object>
+    inline std::shared_ptr<Object> Runtime::unpackUserdata(lua_State * L, int i) {
+        return std::shared_ptr<Object>(*reinterpret_cast<std::shared_ptr<Object> *>(lua_touserdata(L, i)));
     }
 
     template <typename ...Types>
@@ -120,8 +126,7 @@ namespace Retort::Scripting {
     }
 
     template<typename ...Types>
-    inline void Runtime::pushArgs(std::shared_ptr<ScriptObject> o, Types ...params)
-    {
+    inline void Runtime::pushArgs(std::shared_ptr<ScriptObject> o, Types ...params) {
         push(o);
         pushArgs(params...);
     }
@@ -141,8 +146,7 @@ namespace Retort::Scripting {
 
     template <typename ...Types>
     void Runtime::invokeMethod(const std::string &object, const std::string &methodName, Types... params) {
-        switch (int type = lua_getglobal(_state, object.c_str()))
-        {
+        switch (int type = lua_getglobal(_state, object.c_str())) {
         case LUA_TNIL: crash("Global object %s not found", object.c_str());
         case LUA_TTABLE: break;
         default: crash("Global object %s is of type %s, not table", object.c_str(), lua_typename(_state, type));

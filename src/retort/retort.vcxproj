@@ -128,6 +128,7 @@
     <ClCompile Include="Graphics\Window.cpp" />
     <ClCompile Include="Input\SDLEventProducer.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Scripting\GridControlScriptObject.cpp" />
     <ClCompile Include="Scripting\Runtime.cpp" />
     <ClCompile Include="Scripting\ScriptObject.cpp" />
     <ClCompile Include="Scripting\UIScriptObject.cpp" />
@@ -146,8 +147,10 @@
     <ClInclude Include="Graphics\SDLEnvironment.h" />
     <ClInclude Include="Graphics\Window.h" />
     <ClInclude Include="Input\SDLEventProducer.h" />
+    <ClInclude Include="Scripting\GridControlScriptObject.h" />
     <ClInclude Include="Scripting\ScriptObject.h" />
     <ClInclude Include="Scripting\Runtime.h" />
+    <ClInclude Include="Scripting\ScriptObjectWrapper.h" />
     <ClInclude Include="Scripting\UIScriptObject.h" />
     <ClInclude Include="UI\Control.h" />
     <ClInclude Include="UI\Panel.h" />

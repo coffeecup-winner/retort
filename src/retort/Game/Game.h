@@ -18,10 +18,10 @@ namespace Retort::Game {
         Game &operator=(Game const &) = delete;
 
         std::shared_ptr<Runtime> _runtime;
-        std::shared_ptr<UIScriptObject> _ui;
+        std::shared_ptr<UI::UI> _ui;
 
     public:
-        Game(std::shared_ptr<UIScriptObject> ui);
+        Game(std::shared_ptr<UI::UI> ui);
         Feedback consume(const UIEvent &event) override;
         Feedback frameEnded() override;
         void init();
