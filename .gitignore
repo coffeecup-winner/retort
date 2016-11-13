@@ -6,3 +6,6 @@ externals/
 *.opendb
 *.suo
 *.user
+*.ipch
+
+*.log
