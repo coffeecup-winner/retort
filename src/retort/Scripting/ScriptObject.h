@@ -9,6 +9,8 @@ namespace Retort::Scripting {
     class Runtime;
 
     class ScriptObject {
+        noncopyable(ScriptObject)
+
         std::string _name;
 
     protected:

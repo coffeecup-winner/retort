@@ -13,8 +13,7 @@ using namespace Retort::Utilities;
 
 namespace Retort::Game {
     class Game : public Consumer<UIEvent> {
-        Game(Game const &) = delete;
-        Game &operator=(Game const &) = delete;
+        noncopyable(Game)
 
         std::shared_ptr<Runtime> _runtime;
         std::shared_ptr<UI::UI> _ui;

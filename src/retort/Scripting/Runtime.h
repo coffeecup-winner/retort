@@ -10,6 +10,8 @@ namespace Retort::Scripting {
     class ScriptObject;
 
     class Runtime : public std::enable_shared_from_this<Runtime> {
+        noncopyable(Runtime)
+
         lua_State *_state;
 
         template <typename ...Types>

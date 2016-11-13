@@ -7,6 +7,8 @@
 
 namespace Retort::Utilities {
     class Logging {
+        noncopyable(Logging)
+
         std::ofstream _out;
 
     public:

@@ -25,3 +25,7 @@
     log_FATAL(msg, __VA_ARGS__);\
     quit();\
 }
+
+#define noncopyable(Type) \
+    Type(Type const &) = delete; \
+    Type &operator=(Type const &) = delete;

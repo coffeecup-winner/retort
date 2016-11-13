@@ -10,10 +10,16 @@ namespace Retort::Utilities {
         : public Consumer<InEvent>
         , public Producer<OutEvent>
     {
+        noncopyable(Transformer)
+
     public:
+        Transformer();
         virtual ~Transformer();
         virtual Feedback frameEnded() override;
     };
+
+    template <typename InEvent, typename OutEvent>
+    Transformer<InEvent, OutEvent>::Transformer() { }
 
     template <typename InEvent, typename OutEvent>
     Transformer<InEvent, OutEvent>::~Transformer() { }

@@ -14,8 +14,7 @@ namespace Retort::Utilities {
 
     template <typename Event>
     class Consumer {
-        Consumer(Consumer const &) = delete;
-        Consumer &operator=(Consumer const &) = delete;
+        noncopyable(Consumer)
 
     public:
         Consumer();

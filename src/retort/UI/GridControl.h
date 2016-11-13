@@ -5,6 +5,7 @@
 
 namespace Retort::UI {
     class GridControl : public Control {
+        noncopyable(GridControl)
 
     public:
         explicit GridControl(const std::string &name);

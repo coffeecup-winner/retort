@@ -11,8 +11,7 @@ using namespace Retort::Utilities;
 
 namespace Retort::UI {
     class Control : public Transformer<SDL_Event, UIEvent> {
-        Control(Control const &) = delete;
-        Control &operator=(Control const &) = delete;
+        noncopyable(Control)
 
         std::string _name;
         Rect _bounds;

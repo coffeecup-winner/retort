@@ -8,6 +8,8 @@ using namespace Retort::UI;
 
 namespace Retort::Scripting {
     class GridControlScriptObject : public ScriptObjectWrapper<GridControl> {
+        noncopyable(GridControlScriptObject)
+
     public:
         GridControlScriptObject(const std::string &name);
         void fillMetaTable(std::shared_ptr<Runtime> state) override;
