@@ -12,6 +12,6 @@ namespace Retort::Scripting {
 
     public:
         GridControlScriptObject(const std::string &name);
-        void fillMetaTable(std::shared_ptr<Runtime> state) override;
+        void fillMetaTable(std::shared_ptr<Runtime> runtime) override;
     };
 }

@@ -47,6 +47,16 @@ namespace Retort::Scripting {
         lua_close(_state);
     }
 
+    Runtime::Reference Runtime::createReference(lua_State *L) {
+        return Reference(luaL_ref(L, LUA_REGISTRYINDEX));
+    }
+
+    int Runtime::EmptyFunction(lua_State *L) {
+        return 0;
+    }
+
+    void Runtime::EmptyTable(std::shared_ptr<Runtime> table) { }
+
     void Runtime::push(bool b) {
         lua_pushboolean(_state, b);
     }
@@ -91,12 +101,17 @@ namespace Retort::Scripting {
                     crash("[GC] trying to collect non-userdata object");
                 }
                 auto obj = reinterpret_cast<std::shared_ptr<ScriptObject> *>(lua_touserdata(L, 1));
-                obj->reset();
                 log_INFO("[GC] collected %x", obj->get());
+                obj->reset();
                 return 0;
             });
         }
         lua_setmetatable(_state, -2);
+    }
+
+    void Runtime::push(TableFunction f) {
+        lua_newtable(_state);
+        f(shared_from_this());
     }
 
     void Runtime::assign(const std::string &name) {
@@ -147,6 +162,11 @@ namespace Retort::Scripting {
 
     void Runtime::assign(const std::string &name, std::shared_ptr<ScriptObject> o) {
         push(o);
+        assign(name);
+    }
+
+    void Runtime::assign(const std::string & name, TableFunction f) {
+        push(f);
         assign(name);
     }
 

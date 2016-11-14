@@ -13,7 +13,7 @@ namespace Retort::Scripting {
     public:
         ScriptObjectWrapper(const std::string &name, const std::shared_ptr<Object> &object);
         std::shared_ptr<Object> getObject() const;
-        virtual void fillMetaTable(std::shared_ptr<Runtime> state) = 0;
+        virtual void fillMetaTable(std::shared_ptr<Runtime> runtime) = 0;
     };
 
     template<typename Object>

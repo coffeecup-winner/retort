@@ -18,7 +18,7 @@ namespace Retort::Scripting {
 
     public:
         virtual ~ScriptObject();
-        virtual void fillMetaTable(std::shared_ptr<Runtime> state) = 0;
+        virtual void fillMetaTable(std::shared_ptr<Runtime> runtime) = 0;
 
         const std::string &getMetaTableName() const;
     };

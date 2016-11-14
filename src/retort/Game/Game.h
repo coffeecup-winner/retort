@@ -16,7 +16,7 @@ namespace Retort::Game {
         noncopyable(Game)
 
         std::shared_ptr<Runtime> _runtime;
-        std::shared_ptr<UI::UI> _ui;
+        std::shared_ptr<UIScriptObject> _ui;
 
     public:
         Game(std::shared_ptr<UI::UI> ui);
