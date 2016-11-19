@@ -7,7 +7,7 @@
 
 namespace Retort::Graphics {
     class SDLEnvironment {
-        noncopyable(SDLEnvironment)
+        NONCOPYABLE(SDLEnvironment)
 
         bool _isValid;
 

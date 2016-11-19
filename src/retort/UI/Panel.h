@@ -5,7 +5,7 @@
 
 namespace Retort::UI {
     class Panel : public Control {
-        noncopyable(Panel)
+        NONCOPYABLE(Panel)
 
     public:
         explicit Panel(const std::string &name);

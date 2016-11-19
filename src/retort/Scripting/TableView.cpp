@@ -18,7 +18,7 @@ namespace Retort::Scripting {
             return nullptr;
         }
         if (type != LUA_TTABLE) {
-            crash("");
+            CRASH("Type mismatch, expected table, got %s", lua_typename(_state, type));
         }
         STACK_ASSERT(+1, _state);
         return std::make_shared<TableView>(_state);
@@ -33,7 +33,7 @@ namespace Retort::Scripting {
             return nullptr;
         }
         if (type != LUA_TTABLE) {
-            crash("");
+            CRASH("Type mismatch, expected table, got %s", lua_typename(_state, type));
         }
         STACK_ASSERT(+1, _state);
         return std::make_shared<TableView>(_state);

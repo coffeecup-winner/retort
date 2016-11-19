@@ -17,10 +17,10 @@ namespace Retort::Scripting {
             case (GridControlEvent::CellClick):
                 _runtime->invokeMethod(ref, "cellClick", event.gridControlEvent.cellClickX, event.gridControlEvent.cellClickY);
                 break;
-            default: crash("Unknown GridControl event");
+            default: CRASH("Unknown GridControl event");
             }
             break;
-        default: crash("Unknown UI event from %s", event.name.c_str());
+        default: CRASH("Unknown UI event from %s", event.name.c_str());
         }
         return Feedback::Continue;
     }

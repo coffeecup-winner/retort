@@ -7,7 +7,7 @@ namespace Retort::Graphics {
     typedef TTF_Font Font;
 
     class Fonts {
-        noncopyable(Fonts)
+        NONCOPYABLE(Fonts)
 
         std::shared_ptr<Font> _ubuntu14;
 

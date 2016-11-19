@@ -9,7 +9,7 @@
 namespace Retort::Utilities {
     template <typename Event>
     class LoggingDecorator : public Transformer<Event, Event> {
-        noncopyable(LoggingDecorator)
+        NONCOPYABLE(LoggingDecorator)
 
         typedef void (*LoggingDecoratorCallback)(std::iostream &stream, const Event &event);
 

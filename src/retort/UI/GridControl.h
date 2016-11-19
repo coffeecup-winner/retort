@@ -8,7 +8,7 @@ using namespace Retort::Scripting;
 
 namespace Retort::UI {
     class GridControl : public Control {
-        noncopyable(GridControl)
+        NONCOPYABLE(GridControl)
 
         std::shared_ptr<Reference> _data;
 

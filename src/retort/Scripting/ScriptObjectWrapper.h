@@ -6,7 +6,7 @@
 namespace Retort::Scripting {
     template <typename Object>
     class ScriptObjectWrapper : public ScriptObject {
-        noncopyable(ScriptObjectWrapper)
+        NONCOPYABLE(ScriptObjectWrapper)
 
         std::shared_ptr<Object> _object;
 

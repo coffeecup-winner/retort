@@ -13,7 +13,7 @@ void doCrash() {
 void assertStack(const int expectedChange, const int stackBefore, lua_State *L) {
     const int change = lua_gettop(L) - stackBefore;
     if (change != expectedChange) {
-        crash("Stack disbalance, expected %s%d, was %s%d", expectedChange > 0 ? "+" : "", expectedChange, change > 0 ? "+" : "", change);
+        CRASH("Stack disbalance, expected %s%d, was %s%d", expectedChange > 0 ? "+" : "", expectedChange, change > 0 ? "+" : "", change);
     }
 }
 

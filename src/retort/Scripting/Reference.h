@@ -8,7 +8,7 @@
 namespace Retort::Scripting {
 
     class Reference {
-        noncopyable(Reference)
+        NONCOPYABLE(Reference)
 
         lua_State *_state;
         const int _ref;

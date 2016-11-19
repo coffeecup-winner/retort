@@ -10,7 +10,7 @@ namespace Retort::Utilities {
         : public Consumer<InEvent>
         , public Producer<OutEvent>
     {
-        noncopyable(Transformer)
+        NONCOPYABLE(Transformer)
 
     public:
         Transformer();

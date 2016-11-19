@@ -11,7 +11,7 @@
 
 namespace Retort::Graphics {
     class Renderer {
-        noncopyable(Renderer)
+        NONCOPYABLE(Renderer)
 
         std::shared_ptr<SDL_Renderer> _renderer;
 

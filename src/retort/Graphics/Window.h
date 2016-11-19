@@ -5,7 +5,7 @@
 
 namespace Retort::Graphics {
     class Window {
-        noncopyable(Window)
+        NONCOPYABLE(Window)
 
         std::shared_ptr<SDL_Window> _window;
 

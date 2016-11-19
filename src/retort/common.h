@@ -17,10 +17,10 @@
 #define log_ERROR(msg, ...) (SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, msg, __VA_ARGS__))
 #define log_FATAL(msg, ...) (SDL_LogCritical(SDL_LOG_CATEGORY_APPLICATION, msg, __VA_ARGS__))
 
-#define crash(msg, ...) (log_FATAL(msg, __VA_ARGS__), doCrash())
+#define CRASH(msg, ...) (log_FATAL(msg, __VA_ARGS__), doCrash())
 [[noreturn]] void doCrash();
 
-#define noncopyable(Type) \
+#define NONCOPYABLE(Type) \
     Type(Type const &) = delete; \
     Type &operator=(Type const &) = delete;
 

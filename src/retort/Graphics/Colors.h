@@ -7,7 +7,7 @@ namespace Retort::Graphics {
     typedef SDL_Color Color;
 
     class Colors {
-        noncopyable(Colors)
+        NONCOPYABLE(Colors)
 
     public:
         static const Color WHITE;

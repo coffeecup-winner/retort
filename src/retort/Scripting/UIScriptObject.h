@@ -16,7 +16,7 @@ namespace Retort::Scripting {
         : public ScriptObjectWrapper<UI::UI>
         , public Consumer<UIEvent>
     {
-        noncopyable(UIScriptObject)
+        NONCOPYABLE(UIScriptObject)
 
         std::shared_ptr<Runtime> _runtime;
         std::map<std::string, std::shared_ptr<Reference>> _references = {};

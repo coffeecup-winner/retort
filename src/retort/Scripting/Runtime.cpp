@@ -94,7 +94,7 @@ namespace Retort::Scripting {
             assign("__index");
             assign("__gc", [](lua_State *L) -> int {
                 if (lua_type(L, -1) != LUA_TUSERDATA) {
-                    crash("[GC] trying to collect non-userdata object");
+                    CRASH("[GC] trying to collect non-userdata object");
                 }
                 auto obj = reinterpret_cast<std::shared_ptr<ScriptObject> *>(lua_touserdata(L, 1));
                 log_INFO("[GC] collected %x", obj->get());
@@ -168,7 +168,7 @@ namespace Retort::Scripting {
 
     void Runtime::loadFile(const std::string &filepath) {
         if (luaL_loadfile(_state, filepath.c_str()) || lua_pcall(_state, 0, 0, 0)) {
-            crash("Failed to load a file: %s", lua_tostring(_state, -1));
+            CRASH("Failed to load a file: %s", lua_tostring(_state, -1));
         } else {
             log_INFO("Loaded script: %s", filepath.c_str());
         }

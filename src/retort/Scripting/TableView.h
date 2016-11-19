@@ -5,7 +5,7 @@
 
 namespace Retort::Scripting {
     class TableView {
-        noncopyable(TableView)
+        NONCOPYABLE(TableView)
 
         lua_State *_state;
 

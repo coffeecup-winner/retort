@@ -13,7 +13,7 @@ using namespace Retort::Utilities;
 
 namespace Retort::Game {
     class Game : public Consumer<UIEvent> {
-        noncopyable(Game)
+        NONCOPYABLE(Game)
 
         std::shared_ptr<Runtime> _runtime;
         std::shared_ptr<UIScriptObject> _ui;

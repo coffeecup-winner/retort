@@ -11,7 +11,7 @@ namespace Retort::Scripting {
     class ScriptObject;
 
     class Runtime : public std::enable_shared_from_this<Runtime> {
-        noncopyable(Runtime)
+        NONCOPYABLE(Runtime)
 
         lua_State *_state;
 
@@ -145,16 +145,16 @@ namespace Retort::Scripting {
     inline void Runtime::invoke(Types ...params) {
         pushArgs(params...);
         if (lua_pcall(_state, constexpr { sizeof...(Types) }, 0, 0)) {
-            crash("Failed to to invoke a function: %s", lua_tostring(_state, -1));
+            CRASH("Failed to to invoke a function: %s", lua_tostring(_state, -1));
         }
     }
 
     template <typename ...Types>
     void Runtime::invokeFunction(const std::string &functionName, Types... params) {
         switch (lua_getglobal(_state, functionName.c_str())) {
-        case LUA_TNIL: crash("Global function %s does not exist", functionName.c_str());
+        case LUA_TNIL: CRASH("Global function %s does not exist", functionName.c_str());
         case LUA_TFUNCTION: break;
-        default: crash("Global variable %s is not a function", functionName.c_str());
+        default: CRASH("Global variable %s is not a function", functionName.c_str());
         }
         invoke(params...);
     }
@@ -167,9 +167,9 @@ namespace Retort::Scripting {
         default: crash("Global object %s is of type %s, not table", object.c_str(), lua_typename(_state, type));
         }
         switch (lua_getfield(_state, -1, methodName.c_str())) {
-        case LUA_TNIL: crash("Method %s.%s does not exist", object.c_str(), methodName.c_str());
+        case LUA_TNIL: CRASH("Method %s.%s does not exist", object.c_str(), methodName.c_str());
         case LUA_TFUNCTION: break;
-        default: crash("Member %s.%s is not a function", object.c_str(), methodName.c_str());
+        default: CRASH("Member %s.%s is not a function", object.c_str(), methodName.c_str());
         }
         invoke(params...);
     }
@@ -178,9 +178,9 @@ namespace Retort::Scripting {
     void Runtime::invokeMethod(const std::shared_ptr<Reference> &ref, const std::string &methodName, Types... params) {
         auto view = ref->view();
         switch (lua_getfield(_state, -1, methodName.c_str())) {
-        case LUA_TNIL: crash("Method %s does not exist in the referenced table", methodName.c_str());
+        case LUA_TNIL: CRASH("Method %s does not exist in the referenced table", methodName.c_str());
         case LUA_TFUNCTION: break;
-        default: crash("Member %s of the referenced table is not a function", methodName.c_str());
+        default: CRASH("Member %s of the referenced table is not a function", methodName.c_str());
         }
         invoke(params...);
     }

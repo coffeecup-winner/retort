@@ -9,7 +9,7 @@ namespace Retort::Utilities {
 
     template <typename Event>
     class Producer : public std::enable_shared_from_this<Producer<Event>> {
-        noncopyable(Producer)
+        NONCOPYABLE(Producer)
 
     protected:
         std::shared_ptr<Consumer<Event>> _consumer;

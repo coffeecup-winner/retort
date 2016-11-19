@@ -14,7 +14,7 @@ namespace Retort::Utilities {
 
     template <typename Event>
     class Consumer {
-        noncopyable(Consumer)
+        NONCOPYABLE(Consumer)
 
     public:
         Consumer();

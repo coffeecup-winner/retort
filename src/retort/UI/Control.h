@@ -11,7 +11,7 @@ using namespace Retort::Utilities;
 
 namespace Retort::UI {
     class Control : public Transformer<SDL_Event, UIEvent> {
-        noncopyable(Control)
+        NONCOPYABLE(Control)
 
         std::string _name;
         Rect _bounds;
