@@ -3,6 +3,7 @@
 
 #include <lua.hpp>
 
+#include <Scripting/Reference.h>
 #include <Scripting/ScriptObject.h>
 #include <Utilities/Logging.h>
 
@@ -43,12 +44,6 @@ namespace Retort::Scripting {
             Object *that;
         };
 
-        struct Reference {
-            int ref;
-
-            explicit Reference(int ref): ref(ref) { }
-        };
-
         typedef void (*TableFunction)(std::shared_ptr<Runtime>);
 
         Runtime();
@@ -57,7 +52,6 @@ namespace Retort::Scripting {
         static Closure<Object> unpackClosure(lua_State *L);
         template <typename Object>
         static std::shared_ptr<Object> unpackUserdata(lua_State *L, int i);
-        static Reference createReference(lua_State *L);
         static int EmptyFunction(lua_State *L);
         static void EmptyTable(std::shared_ptr<Runtime> table);
 
@@ -86,7 +80,7 @@ namespace Retort::Scripting {
         template <typename ...Types>
         void invokeMethod(const std::string &object, const std::string &methodName, Types... params);
         template <typename ...Types>
-        void invokeMethod(Reference ref, const std::string &methodName, Types... params);
+        void invokeMethod(const std::shared_ptr<Reference> &ref, const std::string &methodName, Types... params);
     };
 
     template <typename Object>
@@ -181,8 +175,8 @@ namespace Retort::Scripting {
     }
 
     template <typename ...Types>
-    void Runtime::invokeMethod(Runtime::Reference ref, const std::string &methodName, Types... params) {
-        lua_rawgeti(_state, LUA_REGISTRYINDEX, ref.ref);
+    void Runtime::invokeMethod(const std::shared_ptr<Reference> &ref, const std::string &methodName, Types... params) {
+        auto view = ref->view();
         switch (lua_getfield(_state, -1, methodName.c_str())) {
         case LUA_TNIL: crash("Method %s does not exist in the referenced table", methodName.c_str());
         case LUA_TFUNCTION: break;

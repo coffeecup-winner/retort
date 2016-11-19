@@ -47,10 +47,6 @@ namespace Retort::Scripting {
         lua_close(_state);
     }
 
-    Runtime::Reference Runtime::createReference(lua_State *L) {
-        return Reference(luaL_ref(L, LUA_REGISTRYINDEX));
-    }
-
     int Runtime::EmptyFunction(lua_State *L) {
         return 0;
     }

@@ -120,6 +120,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="common.cpp" />
     <ClCompile Include="Game\Game.cpp" />
     <ClCompile Include="Graphics\Colors.cpp" />
     <ClCompile Include="Graphics\Fonts.cpp" />
@@ -129,8 +130,10 @@
     <ClCompile Include="Input\SDLEventProducer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scripting\GridControlScriptObject.cpp" />
+    <ClCompile Include="Scripting\Reference.cpp" />
     <ClCompile Include="Scripting\Runtime.cpp" />
     <ClCompile Include="Scripting\ScriptObject.cpp" />
+    <ClCompile Include="Scripting\TableView.cpp" />
     <ClCompile Include="Scripting\UIScriptObject.cpp" />
     <ClCompile Include="UI\Control.cpp" />
     <ClCompile Include="UI\Panel.cpp" />
@@ -148,9 +151,11 @@
     <ClInclude Include="Graphics\Window.h" />
     <ClInclude Include="Input\SDLEventProducer.h" />
     <ClInclude Include="Scripting\GridControlScriptObject.h" />
+    <ClInclude Include="Scripting\Reference.h" />
     <ClInclude Include="Scripting\ScriptObject.h" />
     <ClInclude Include="Scripting\Runtime.h" />
     <ClInclude Include="Scripting\ScriptObjectWrapper.h" />
+    <ClInclude Include="Scripting\TableView.h" />
     <ClInclude Include="Scripting\UIScriptObject.h" />
     <ClInclude Include="common.h" />
     <ClInclude Include="UI\Control.h" />

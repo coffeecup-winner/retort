@@ -3,6 +3,7 @@
 
 #include <map>
 
+#include <Scripting/Reference.h>
 #include <Scripting/Runtime.h>
 #include <Scripting/ScriptObjectWrapper.h>
 #include <UI/UI.h>
@@ -18,13 +19,13 @@ namespace Retort::Scripting {
         noncopyable(UIScriptObject)
 
         std::shared_ptr<Runtime> _runtime;
-        std::map<std::string, Runtime::Reference> _references;
+        std::map<std::string, std::shared_ptr<Reference>> _references = {};
 
     public:
         UIScriptObject(const std::shared_ptr<UI::UI> &ui, std::shared_ptr<Runtime> runtime);
         Feedback consume(const UIEvent &event) override;
         Feedback frameEnded() override;
         void fillMetaTable(std::shared_ptr<Runtime> runtime) override;
-        void addReference(const std::string &name, Runtime::Reference ref);
+        void addReference(const std::string &name, const std::shared_ptr<Reference> &ref);
     };
 }
