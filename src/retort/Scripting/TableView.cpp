@@ -38,4 +38,22 @@ namespace Retort::Scripting {
         STACK_ASSERT(+1, _state);
         return std::make_shared<TableView>(_state);
     }
+
+    std::string TableView::getString(const std::string &name) {
+        STACK_CHECK(_state);
+        lua_getfield(_state, -1, name.c_str());
+        auto str = std::string(lua_tostring(_state, -1));
+        lua_pop(_state, 1);
+        STACK_ASSERT(0, _state);
+        return str;
+    }
+
+    std::string TableView::getString(const int i) {
+        STACK_CHECK(_state);
+        lua_geti(_state, -1, i);
+        auto str = std::string(lua_tostring(_state, -1));
+        lua_pop(_state, 1);
+        STACK_ASSERT(0, _state);
+        return str;
+    }
 }

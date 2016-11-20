@@ -34,7 +34,14 @@ namespace Retort::UI {
             for (int y = 0; y < bounds.h / 32; ++y) {
                 auto cell = column->getTable(y);
                 if (cell) {
-                    renderer->renderSprite(sprites->get("sprite0"), 0, 0, x * 32, y * 32);
+                    auto name = cell->getString("name");
+                    int i = 0, j = 0;
+                    if (name == "start") {
+                        i = 1;
+                    } else if (name == "end") {
+                        j = 1;
+                    }
+                    renderer->renderSprite(sprites->get("sprite0"), i, j, x * 32, y * 32);
                 }
             }
         }
