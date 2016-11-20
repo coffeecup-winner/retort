@@ -110,6 +110,11 @@ namespace Retort::Scripting {
         f(shared_from_this());
     }
 
+	void Runtime::push(std::shared_ptr<Reference> r) {
+		auto view = r->view();
+		lua_pushvalue(_state, -1);
+	}
+
     void Runtime::assign(const std::string &name) {
         if (lua_gettop(_state) == 1) {
             lua_setglobal(_state, name.c_str());

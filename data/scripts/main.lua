@@ -13,9 +13,9 @@ end
 
 function onInit()
     local pipeline = ui.newGrid('pipeline')
-    pipeline.events.cellClick = function (x, y)
+    pipeline.events.cellClick = function (p, x, y)
         log.warn('Click: (' .. x .. ', ' .. y .. ')')
-        addObject(pipeline, x, y)
+        addObject(p, x, y)
     end
     ui.show(pipeline)
 end

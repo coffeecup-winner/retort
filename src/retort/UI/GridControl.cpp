@@ -3,7 +3,7 @@
 namespace Retort::UI {
     GridControl::GridControl(const std::string &name, std::shared_ptr<Reference> data)
         : Control(name)
-        , _data(data)
+        , _control(data)
     { }
 
     Feedback GridControl::consume(const SDL_Event &event) {
@@ -24,7 +24,8 @@ namespace Retort::UI {
         for (int dy = bounds.y; dy < bounds.h; dy += 32) {
             renderer->drawLine(Colors::BLACK, bounds.x, bounds.y + dy, bounds.x + bounds.w, bounds.y + dy);
         }
-        auto data = _data->view();
+        auto control = _control->view();
+        auto data = control->getTable("data");
         auto field = data->getTable("field");
         if (!field) return;
         for (int x = 0; x < bounds.w / 32; ++x) {

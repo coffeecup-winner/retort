@@ -11,7 +11,7 @@ namespace Retort::Scripting {
         NONCOPYABLE(GridControlScriptObject)
 
     public:
-        GridControlScriptObject(const std::string &name, std::shared_ptr<Reference> data);
+        GridControlScriptObject(const std::string &name, std::shared_ptr<Reference> control);
         void fillMetaTable(std::shared_ptr<Runtime> runtime) override;
     };
 }

@@ -10,10 +10,10 @@ namespace Retort::UI {
     class GridControl : public Control {
         NONCOPYABLE(GridControl)
 
-        std::shared_ptr<Reference> _data;
+        std::shared_ptr<Reference> _control;
 
     public:
-        GridControl(const std::string &name, std::shared_ptr<Reference> data);
+        GridControl(const std::string &name, std::shared_ptr<Reference> control);
         Feedback consume(const SDL_Event &event) override;
         void render(std::shared_ptr<Renderer> renderer, std::shared_ptr<Fonts> fonts) override;
     };

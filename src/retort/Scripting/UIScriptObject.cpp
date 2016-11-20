@@ -10,12 +10,14 @@ namespace Retort::Scripting {
     { }
 
     Feedback UIScriptObject::consume(const UIEvent &event) {
-        auto ref = _references.at(event.name);
+        auto ref = _controls.at(event.name);
+		auto control = ref->view();
+		auto events = control->getTable("events");
         switch (event.control) {
         case UIEvent::GridControl:
             switch (event.gridControlEvent.type) {
             case (GridControlEvent::CellClick):
-                _runtime->invokeMethod(ref, "cellClick", event.gridControlEvent.cellClickX, event.gridControlEvent.cellClickY);
+				_runtime->invokeMethod(events, "cellClick", ref, event.gridControlEvent.cellClickX, event.gridControlEvent.cellClickY);
                 break;
             default: CRASH("Unknown GridControl event");
             }
@@ -35,11 +37,12 @@ namespace Retort::Scripting {
             auto closure = Runtime::unpackClosure<UIScriptObject>(L);
             auto name = lua_tostring(L, 1);
             lua_newtable(L); // result
+            lua_pushvalue(L, -1);
+            auto control = Reference::create(L);
+            closure.that->addControl(name, control);
+            closure.runtime->assign("control", std::make_shared<GridControlScriptObject>(name, control));
             closure.runtime->assign("events", Runtime::EmptyTable);
             closure.runtime->assign("data", Runtime::EmptyTable);
-            lua_getfield(L, -1, "data");
-            auto data = Reference::create(L);
-            closure.runtime->assign("control", std::make_shared<GridControlScriptObject>(name, data));
             STACK_ASSERT(+1, L);
             return 1;
         });
@@ -50,16 +53,13 @@ namespace Retort::Scripting {
             lua_getfield(L, 1, "control");
             auto obj = Runtime::unpackUserdata<GridControlScriptObject>(L, -1); // TODO: ControlScriptObject
             lua_pop(L, 1);
-            lua_getfield(L, 1, "events");
-            auto ref = Reference::create(L);
-            closure.that->addReference(obj->getObject()->getName(), ref);
             closure.that->getObject()->show(obj->getObject());
             STACK_ASSERT(0, L);
             return 0;
         });
     }
 
-    void UIScriptObject::addReference(const std::string & name, const std::shared_ptr<Reference> &ref) {
-        _references.insert(std::make_pair(name, ref));
+    void UIScriptObject::addControl(const std::string &name, const std::shared_ptr<Reference> &ref) {
+        _controls.insert(std::make_pair(name, ref));
     }
 }

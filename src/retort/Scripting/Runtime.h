@@ -31,6 +31,8 @@ namespace Retort::Scripting {
         void pushArgs(lua_CFunction f, Types... params);
         template <typename ...Types>
         void pushArgs(std::shared_ptr<ScriptObject> o, Types... params);
+		template <typename ...Types>
+		void pushArgs(std::shared_ptr<Reference> r, Types... params);
         template <typename ...Types>
         void invoke(Types... params);
 
@@ -64,6 +66,7 @@ namespace Retort::Scripting {
         void push(lua_CFunction f, int upvaluesCount);
         void push(std::shared_ptr<ScriptObject> o);
         void push(TableFunction f);
+		void push(std::shared_ptr<Reference> r);
         void assign(const std::string &name);
         void assign(const std::string &name, bool b);
         void assign(const std::string &name, std::nullptr_t n);
@@ -81,6 +84,8 @@ namespace Retort::Scripting {
         void invokeMethod(const std::string &object, const std::string &methodName, Types... params);
         template <typename ...Types>
         void invokeMethod(const std::shared_ptr<Reference> &ref, const std::string &methodName, Types... params);
+		template <typename ...Types>
+		void invokeMethod(const std::shared_ptr<TableView> &table, const std::string &methodName, Types... params);
     };
 
     template <typename Object>
@@ -141,6 +146,12 @@ namespace Retort::Scripting {
         pushArgs(params...);
     }
 
+    template <typename ...Types>
+    inline void Runtime::pushArgs(std::shared_ptr<Reference> r, Types... params) {
+        push(r);
+        pushArgs(params...);
+    }
+
     template<typename ...Types>
     inline void Runtime::invoke(Types ...params) {
         pushArgs(params...);
@@ -150,7 +161,7 @@ namespace Retort::Scripting {
     }
 
     template <typename ...Types>
-    void Runtime::invokeFunction(const std::string &functionName, Types... params) {
+	inline void Runtime::invokeFunction(const std::string &functionName, Types... params) {
         switch (lua_getglobal(_state, functionName.c_str())) {
         case LUA_TNIL: CRASH("Global function %s does not exist", functionName.c_str());
         case LUA_TFUNCTION: break;
@@ -160,7 +171,7 @@ namespace Retort::Scripting {
     }
 
     template <typename ...Types>
-    void Runtime::invokeMethod(const std::string &object, const std::string &methodName, Types... params) {
+	inline void Runtime::invokeMethod(const std::string &object, const std::string &methodName, Types... params) {
         switch (int type = lua_getglobal(_state, object.c_str())) {
         case LUA_TNIL: crash("Global object %s not found", object.c_str());
         case LUA_TTABLE: break;
@@ -175,7 +186,7 @@ namespace Retort::Scripting {
     }
 
     template <typename ...Types>
-    void Runtime::invokeMethod(const std::shared_ptr<Reference> &ref, const std::string &methodName, Types... params) {
+	inline void Runtime::invokeMethod(const std::shared_ptr<Reference> &ref, const std::string &methodName, Types... params) {
         auto view = ref->view();
         switch (lua_getfield(_state, -1, methodName.c_str())) {
         case LUA_TNIL: CRASH("Method %s does not exist in the referenced table", methodName.c_str());
@@ -184,4 +195,14 @@ namespace Retort::Scripting {
         }
         invoke(params...);
     }
+
+	template <typename ...Types>
+	inline void Runtime::invokeMethod(const std::shared_ptr<TableView> &table, const std::string &methodName, Types... params) {
+		switch (lua_getfield(_state, -1, methodName.c_str())) {
+		case LUA_TNIL: CRASH("Method %s does not exist in the referenced table", methodName.c_str());
+		case LUA_TFUNCTION: break;
+		default: CRASH("Member %s of the referenced table is not a function", methodName.c_str());
+		}
+		invoke(params...);
+	}
 }
