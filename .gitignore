@@ -2,6 +2,7 @@ build/
 externals/
 
 .vs/
+packages/
 *.db
 *.opendb
 *.suo
