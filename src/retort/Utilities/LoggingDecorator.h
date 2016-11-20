@@ -18,7 +18,7 @@ namespace Retort::Utilities {
     public:
         explicit LoggingDecorator(LoggingDecoratorCallback callback);
         virtual ~LoggingDecorator();
-        virtual Feedback consume(const Event &event) override;
+        Feedback consume(const Event &event) override;
     };
 
     template <typename Event>
