@@ -6,6 +6,13 @@ namespace Retort::UI {
         , _control(control)
     { }
 
+    void GridControl::resize(int w, int h) {
+        Control::resize(w, h);
+        // TODO: use active cell bounds to calculate the focus, instead of using { 0, 0, 3, 1 }
+        _offsetX = (w - (CellSize + BorderWidth) * 3) / 2;
+        _offsetY = (h - (CellSize + BorderWidth) * 1) / 2;
+    }
+
     Feedback GridControl::consume(const SDL_Event &event) {
         Control::consume(event);
         if (event.type == SDL_MOUSEBUTTONUP && event.button.button == SDL_BUTTON_LEFT) {

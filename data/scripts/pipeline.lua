@@ -10,9 +10,9 @@ function newPipeline(name)
         log.warn('Click: (' .. x .. ', ' .. y .. ')')
         setObject(p, x, y, symPipe)
     end
-    setObject(pipeline, 4, 4, symStart)
-    setObject(pipeline, 5, 4, symPipe)
-    setObject(pipeline, 6, 4, symEnd)
+    setObject(pipeline, 0, 0, symStart)
+    setObject(pipeline, 1, 0, symPipe)
+    setObject(pipeline, 2, 0, symEnd)
     return pipeline
 end
 
