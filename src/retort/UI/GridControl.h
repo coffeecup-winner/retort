@@ -11,6 +11,7 @@ namespace Retort::UI {
         NONCOPYABLE(GridControl)
 
         static const int CellSize = 32;
+        static const int BorderWidth = 3;
 
         int _offsetX = 0;
         int _offsetY = 0;
