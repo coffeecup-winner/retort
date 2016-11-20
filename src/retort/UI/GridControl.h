@@ -12,6 +12,9 @@ namespace Retort::UI {
 
         static const int CellSize = 32;
 
+        int _offsetX = 0;
+        int _offsetY = 0;
+        bool _isDraggingViewport = false;
         std::shared_ptr<Reference> _control;
 
     public:
