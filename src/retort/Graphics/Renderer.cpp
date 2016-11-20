@@ -38,4 +38,13 @@ namespace Retort::Graphics {
         SDL_RenderCopy(_renderer.get(), texture, &surface->clip_rect, &rect);
         SDL_DestroyTexture(texture);
     }
+
+    void Renderer::renderSprite(std::shared_ptr<Sprite> sprite, int i, int j, int x, int y) {
+        auto surface = sprite->get();
+        auto texture = SDL_CreateTextureFromSurface(_renderer.get(), surface);
+        SDL_Rect srcRect = { i * 32, j * 32, 32, 32 }; // TODO: move to sprite
+        SDL_Rect dstRect = { x, y, srcRect.w, srcRect.h };
+        SDL_RenderCopy(_renderer.get(), texture, &srcRect, &dstRect);
+        SDL_DestroyTexture(texture);
+    }
 }

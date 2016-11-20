@@ -4,6 +4,7 @@ namespace Retort::UI {
     UI::UI(std::shared_ptr<Renderer> renderer)
         : Transformer()
         , _fonts(std::make_shared<Fonts>())
+        , _sprites(std::make_shared<Sprites>())
         , _renderer(renderer)
         , _root(std::shared_ptr<Control>())
     { }
@@ -23,7 +24,7 @@ namespace Retort::UI {
 
     Feedback UI::frameEnded() {
         auto feedback = _root->frameEnded();
-        _root->render(_renderer, _fonts);
+        _root->render(_renderer, _fonts, _sprites);
         _renderer->present();
         return feedback;
     }

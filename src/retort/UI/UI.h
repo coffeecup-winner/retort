@@ -4,6 +4,7 @@
 #include <Graphics/Colors.h>
 #include <Graphics/Fonts.h>
 #include <Graphics/Renderer.h>
+#include <Graphics/Sprites.h>
 #include <UI/UIEvent.h>
 #include <UI/GridControl.h>
 #include <Utilities/Transformer.h>
@@ -16,6 +17,7 @@ namespace Retort::UI {
         NONCOPYABLE(UI)
 
         std::shared_ptr<Fonts> _fonts;
+        std::shared_ptr<Sprites> _sprites;
         std::shared_ptr<Renderer> _renderer;
 
         std::shared_ptr<Control> _root;

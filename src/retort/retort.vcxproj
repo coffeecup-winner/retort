@@ -127,6 +127,8 @@
     <ClCompile Include="Graphics\Fonts.cpp" />
     <ClCompile Include="Graphics\Renderer.cpp" />
     <ClCompile Include="Graphics\SDLEnvironment.cpp" />
+    <ClCompile Include="Graphics\Sprite.cpp" />
+    <ClCompile Include="Graphics\Sprites.cpp" />
     <ClCompile Include="Graphics\Window.cpp" />
     <ClCompile Include="Input\SDLEventProducer.cpp" />
     <ClCompile Include="main.cpp" />
@@ -149,6 +151,8 @@
     <ClInclude Include="Graphics\Geometry.h" />
     <ClInclude Include="Graphics\Renderer.h" />
     <ClInclude Include="Graphics\SDLEnvironment.h" />
+    <ClInclude Include="Graphics\Sprite.h" />
+    <ClInclude Include="Graphics\Sprites.h" />
     <ClInclude Include="Graphics\Window.h" />
     <ClInclude Include="Input\SDLEventProducer.h" />
     <ClInclude Include="Scripting\GridControlScriptObject.h" />

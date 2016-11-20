@@ -15,6 +15,6 @@ namespace Retort::UI {
     public:
         GridControl(const std::string &name, std::shared_ptr<Reference> control);
         Feedback consume(const SDL_Event &event) override;
-        void render(std::shared_ptr<Renderer> renderer, std::shared_ptr<Fonts> fonts) override;
+        void render(std::shared_ptr<Renderer> renderer, std::shared_ptr<Fonts> fonts, std::shared_ptr<Sprites> sprites) override;
     };
 }

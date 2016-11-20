@@ -57,6 +57,12 @@
       <Filter>Scripting</Filter>
     </ClCompile>
     <ClCompile Include="common.cpp" />
+    <ClCompile Include="Graphics\Sprites.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Sprite.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Graphics">
@@ -157,6 +163,12 @@
     </ClInclude>
     <ClInclude Include="Scripting\Reference.h">
       <Filter>Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Sprites.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Sprite.h">
+      <Filter>Graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

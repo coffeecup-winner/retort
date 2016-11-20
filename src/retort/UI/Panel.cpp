@@ -5,7 +5,7 @@ namespace Retort::UI {
         : Control(name)
     { }
 
-    void Panel::render(std::shared_ptr<Renderer> renderer, std::shared_ptr<Fonts> fonts) {
+    void Panel::render(std::shared_ptr<Renderer> renderer, std::shared_ptr<Fonts> fonts, std::shared_ptr<Sprites> sprites) {
         renderer->fillRect(getBackgroundColor(), getBounds());
     }
 }

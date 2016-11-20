@@ -15,7 +15,7 @@ namespace Retort::UI {
         return Feedback::Continue;
     }
 
-    void GridControl::render(std::shared_ptr<Renderer> renderer, std::shared_ptr<Fonts> fonts) {
+    void GridControl::render(std::shared_ptr<Renderer> renderer, std::shared_ptr<Fonts> fonts, std::shared_ptr<Sprites> sprites) {
         renderer->fillRect(getBackgroundColor(), getBounds());
         auto bounds = getBounds();
         for (int dx = bounds.x; dx < bounds.w; dx += 32) {
@@ -34,7 +34,7 @@ namespace Retort::UI {
             for (int y = 0; y < bounds.h / 32; ++y) {
                 auto cell = column->getTable(y);
                 if (cell) {
-                    renderer->fillRect(Colors::BLACK, { x * 32, y * 32, 32, 32 });
+                    renderer->renderSprite(sprites->get("sprite0"), 0, 0, x * 32, y * 32);
                 }
             }
         }

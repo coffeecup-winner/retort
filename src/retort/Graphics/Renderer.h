@@ -7,6 +7,7 @@
 #include <Graphics/Colors.h>
 #include <Graphics/Fonts.h>
 #include <Graphics/Geometry.h>
+#include <Graphics/Sprite.h>
 #include <Graphics/Window.h>
 
 namespace Retort::Graphics {
@@ -23,5 +24,6 @@ namespace Retort::Graphics {
         void drawLine(Color color, int x1, int y1, int x2, int y2);
         void fillRect(Color color, Rect rect);
         void renderText(std::shared_ptr<Font> font, Color color, std::string str, int x, int y);
+        void renderSprite(std::shared_ptr<Sprite> sprite, int i, int j, int x, int y);
     };
 }

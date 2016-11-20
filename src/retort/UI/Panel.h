@@ -9,6 +9,6 @@ namespace Retort::UI {
 
     public:
         explicit Panel(const std::string &name);
-        void render(std::shared_ptr<Renderer> renderer, std::shared_ptr<Fonts> fonts) override;
+        void render(std::shared_ptr<Renderer> renderer, std::shared_ptr<Fonts> fonts, std::shared_ptr<Sprites> sprites) override;
     };
 }
