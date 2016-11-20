@@ -6,24 +6,19 @@ local symPipe = symbol("pipe")
 
 function newPipeline(name)
     local pipeline = ui.newGrid(name)
-    pipeline.events.cellClick = function (p, x, y)
-        log.warn('Click: (' .. x .. ', ' .. y .. ')')
-        setObject(p, x, y, symPipe)
+    pipeline.data.field = {}
+    pipeline.setObject = function (p, i, j, sym)
+        local field = p.data.field
+        if not field[i] then
+            field[i] = {}
+        end
+        field[i][j] = sym
+    end 
+    pipeline.events.cellClick = function (p, i, j)
+        p:setObject(i, j, symPipe)
     end
-    setObject(pipeline, 0, 0, symStart)
-    setObject(pipeline, 1, 0, symPipe)
-    setObject(pipeline, 2, 0, symEnd)
+    pipeline:setObject(0, 0, symStart)
+    pipeline:setObject(1, 0, symPipe)
+    pipeline:setObject(2, 0, symEnd)
     return pipeline
-end
-
-function setObject(pipeline, x, y, sym)
-    local field = pipeline.data.field
-    if (not field) then
-        pipeline.data.field = {}
-        field = pipeline.data.field
-    end
-    if not field[x] then
-        field[x] = {}
-    end
-    field[x][y] = sym
 end
