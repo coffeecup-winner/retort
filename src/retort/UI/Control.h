@@ -14,10 +14,10 @@ namespace Retort::UI {
         NONCOPYABLE(Control)
 
         std::string _name;
-        Rect _bounds;
-        Color _backgroundColor;
-        int _mouseDownX;
-        int _mouseDownY;
+		Rect _bounds = { 0, 0, 0, 0 };
+        Color _backgroundColor = Colors::WHITE;
+        int _mouseDownX = 0;
+        int _mouseDownY = 0;
 
     protected:
         explicit Control(const std::string &name);

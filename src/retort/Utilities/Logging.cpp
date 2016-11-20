@@ -7,8 +7,8 @@ namespace Retort::Utilities {
         _out.open("retort.log");
         SDL_LogSetOutputFunction([] (void *userdata, int category, SDL_LogPriority priority, const char *message) {
             auto time = std::time(nullptr);
-            tm buf;
-            const char *priorityName;
+			tm buf = {};
+            const char *priorityName = nullptr;
             switch (priority) {
             case SDL_LOG_PRIORITY_VERBOSE: priorityName = "TRACE"; break;
             case SDL_LOG_PRIORITY_DEBUG: priorityName = "DEBUG"; break;
@@ -16,7 +16,7 @@ namespace Retort::Utilities {
             case SDL_LOG_PRIORITY_WARN: priorityName = "WARN"; break;
             case SDL_LOG_PRIORITY_ERROR: priorityName = "ERROR"; break;
             case SDL_LOG_PRIORITY_CRITICAL: priorityName = "FATAL"; break;
-            default: throw std::exception("Unknown log priority");
+            default: CRASH("Unknown log priority");
             }
             localtime_s(&buf, &time);
             static_cast<Logging *>(userdata)->_out
@@ -25,6 +25,7 @@ namespace Retort::Utilities {
                 << "] "
                 << message
                 << std::endl;
+			static_cast<Logging *>(userdata)->_out.flush();
         }, this);
     }
 }

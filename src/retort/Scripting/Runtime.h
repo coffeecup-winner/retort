@@ -40,8 +40,8 @@ namespace Retort::Scripting {
             Closure() {
                 static_assert(std::is_base_of<ScriptObject, Object>::value, "Can't unpack closure with non-script object type");
             }
-            Runtime *runtime;
-            Object *that;
+            Runtime *runtime = nullptr;
+            Object *that = nullptr;
         };
 
         typedef void (*TableFunction)(std::shared_ptr<Runtime>);

@@ -1,8 +1,6 @@
 #include "SDLEventProducer.h"
 
 namespace Retort::Input {
-    SDLEventProducer::SDLEventProducer() { }
-
     void SDLEventProducer::run() {
         do {
             while (SDL_PollEvent(&_event)) {

@@ -83,7 +83,7 @@ namespace Retort::Scripting {
 
     void Runtime::push(std::shared_ptr<ScriptObject> o) {
         new (lua_newuserdata(_state, sizeof(o))) std::shared_ptr<ScriptObject>(o);
-        log_INFO("[GC] allocated a new object of type %s: %x", o->getMetaTableName().c_str(), o.get());
+        log_INFO("[GC] allocated a new object of type %s: %p", o->getMetaTableName().c_str(), o.get());
 
         if (!luaL_getmetatable(_state, o->getMetaTableName().c_str())) {
             log_INFO("Creating metatable for type %s", o->getMetaTableName().c_str());
@@ -97,7 +97,7 @@ namespace Retort::Scripting {
                     CRASH("[GC] trying to collect non-userdata object");
                 }
                 auto obj = reinterpret_cast<std::shared_ptr<ScriptObject> *>(lua_touserdata(L, 1));
-                log_INFO("[GC] collected %x", obj->get());
+                log_INFO("[GC] collected %p", obj->get());
                 obj->reset();
                 return 0;
             });

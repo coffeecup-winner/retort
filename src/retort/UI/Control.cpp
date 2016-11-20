@@ -4,8 +4,6 @@ namespace Retort::UI {
     Control::Control(const std::string &name)
         : Transformer()
         , _name(name)
-        , _bounds({ 0, 0, 0, 0 })
-        , _backgroundColor(Colors::WHITE)
     { }
 
     int Control::getMouseDownX() const {

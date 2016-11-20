@@ -16,7 +16,7 @@ namespace Retort::Input {
         SDL_Event _event;
     
     public:
-        SDLEventProducer();
+        SDLEventProducer() = default;
         void run();
     };
 }
