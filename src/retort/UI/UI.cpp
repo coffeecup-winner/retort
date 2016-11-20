@@ -1,7 +1,7 @@
 #include "UI.h"
 
 namespace Retort::UI {
-    UI::UI(std::shared_ptr<Renderer> renderer)
+    UI::UI(std::shared_ptr<Renderer> &renderer)
         : Transformer()
         , _fonts(std::make_shared<Fonts>())
         , _sprites(std::make_shared<Sprites>())

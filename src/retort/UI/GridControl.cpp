@@ -1,9 +1,9 @@
 #include "GridControl.h"
 
 namespace Retort::UI {
-    GridControl::GridControl(const std::string &name, std::shared_ptr<Reference> data)
+    GridControl::GridControl(const std::string &name, std::shared_ptr<Reference> &control)
         : Control(name)
-        , _control(data)
+        , _control(control)
     { }
 
     Feedback GridControl::consume(const SDL_Event &event) {
@@ -15,7 +15,7 @@ namespace Retort::UI {
         return Feedback::Continue;
     }
 
-    void GridControl::render(std::shared_ptr<Renderer> renderer, std::shared_ptr<Fonts> fonts, std::shared_ptr<Sprites> sprites) {
+    void GridControl::render(std::shared_ptr<Renderer> renderer, std::shared_ptr<Fonts> &fonts, std::shared_ptr<Sprites> &sprites) {
         renderer->fillRect(getBackgroundColor(), getBounds());
         auto bounds = getBounds();
         for (int dx = bounds.x; dx < bounds.w; dx += 32) {

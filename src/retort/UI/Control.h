@@ -32,7 +32,7 @@ namespace Retort::UI {
         const Color &getBackgroundColor() const;
 
         virtual Feedback consume(const SDL_Event &event) override;
-        virtual void render(std::shared_ptr<Renderer> renderer, std::shared_ptr<Fonts> fonts, std::shared_ptr<Sprites> sprites) = 0;
+        virtual void render(std::shared_ptr<Renderer> renderer, std::shared_ptr<Fonts> &fonts, std::shared_ptr<Sprites> &sprites) = 0;
 
         void move(int x, int y);
         void resize(int w, int h);

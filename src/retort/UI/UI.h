@@ -23,7 +23,7 @@ namespace Retort::UI {
         std::shared_ptr<Control> _root;
 
     public:
-        explicit UI(std::shared_ptr<Renderer> renderer);
+        explicit UI(std::shared_ptr<Renderer> &renderer);
         void show(std::shared_ptr<Control> control);
         Feedback consume(const SDL_Event &event) override;
         Feedback frameEnded() override;
