@@ -21,19 +21,8 @@ int main(int argc, char* argv[]) {
     log_INFO("Starting");
 
     SDLEnvironment environment;
-    if (!environment.isValid()) {
-        CRASH("Failed to initialize SDL: %s", SDL_GetError());
-    }
-
     Window window("Hello World!", 640, 480);
-    if (!window.isValid()) {
-        CRASH("Failed to create window: %s", SDL_GetError());
-    }
-
     auto renderer = std::make_shared<Renderer>(window);
-    if (!renderer->isValid()) {
-        CRASH("Failed to create renderer: %s", SDL_GetError());
-    }
 
     log_INFO("Initialized SDL");
 

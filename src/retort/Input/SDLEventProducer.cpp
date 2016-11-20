@@ -2,6 +2,7 @@
 
 namespace Retort::Input {
     void SDLEventProducer::run() {
+		SDL_Event _event = {};
         do {
             while (SDL_PollEvent(&_event)) {
                 if (_consumer->consume(_event) == Feedback::Stop) {

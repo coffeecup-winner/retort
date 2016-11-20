@@ -19,7 +19,7 @@ namespace Retort::Game {
         std::shared_ptr<UIScriptObject> _ui;
 
     public:
-        Game(std::shared_ptr<UI::UI> ui);
+        explicit Game(std::shared_ptr<UI::UI> ui);
         Feedback consume(const UIEvent &event) override;
         Feedback frameEnded() override;
         void init();

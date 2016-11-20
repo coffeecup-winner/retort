@@ -5,11 +5,11 @@ namespace Retort::Graphics {
         : _renderer(std::shared_ptr<SDL_Renderer>(
             SDL_CreateRenderer(window.getSDLWindow(), -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC),
             SDL_DestroyRenderer))
-    { }
-
-    bool Renderer::isValid() const {
-        return _renderer.get() != nullptr;
-    }
+    {
+		if (_renderer.get() == nullptr) {
+			CRASH("Failed to create renderer: %s", SDL_GetError());
+		}
+	}
 
     void Renderer::clear(Color color) {
         SDL_SetRenderDrawColor(_renderer.get(), color.r, color.g, color.b, color.a);

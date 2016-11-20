@@ -17,7 +17,6 @@ namespace Retort::Graphics {
 
     public:
         explicit Renderer(Window &window);
-        bool isValid() const;
 
         void clear(Color color);
         void present();

@@ -9,11 +9,8 @@ namespace Retort::Graphics {
     class SDLEnvironment {
         NONCOPYABLE(SDLEnvironment)
 
-        bool _isValid;
-
     public:
         SDLEnvironment();
         ~SDLEnvironment();
-        bool isValid() const;
     };
 }

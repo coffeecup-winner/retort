@@ -13,8 +13,6 @@ namespace Retort::Input {
     class SDLEventProducer : public Producer<SDL_Event> {
         NONCOPYABLE(SDLEventProducer)
 
-        SDL_Event _event;
-    
     public:
         SDLEventProducer() = default;
         void run();
