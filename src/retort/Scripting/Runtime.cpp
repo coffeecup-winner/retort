@@ -5,6 +5,7 @@ namespace Retort::Scripting {
         : _state(luaL_newstate())
     {
         luaopen_base(_state);
+        luaopen_package(_state);
         lua_pop(_state, 1);
         lua_pushnil(_state);
         assign("print");
