@@ -10,6 +10,8 @@ namespace Retort::UI {
     class GridControl : public Control {
         NONCOPYABLE(GridControl)
 
+        static const int CellSize = 32;
+
         std::shared_ptr<Reference> _control;
 
     public:
